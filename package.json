@@ -1,0 +1,22 @@
+{
+  "name": "curs_project",
+  "version": "1.0.0",
+  "description": "Ilya Zubko curs Project",
+  "main": "server.js",
+  "repository": "https://github.com/iliashka/curs_project.git",
+  "author": "Ilya Zubko iliashka",
+  "license": "MIT",
+  "dependencies": {
+    "accesscontrol": "^2.2.1",
+    "bcrypt": "^5.0.0",
+    "body-parser": "^1.19.0",
+    "dotenv": "^8.2.0",
+    "express": "^4.17.1",
+    "jsonwebtoken": "^8.5.1",
+    "mongoose": "^5.11.17",
+    "nodemon": "^2.0.7"
+  },
+  "scripts": {
+    "server": "nodemon ./server/server.js"
+  }
+}
