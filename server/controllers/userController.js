@@ -155,3 +155,17 @@ exports.newPost = async (req, res, next) => {
         next(error)
     }
 }
+
+exports.takeProfileInfo = async (req, res, next) => {
+    console.log(req.body)
+    try {
+        const { login } = req.body;
+        const user = await User.findOne({login});
+        const posts = await Post.find({login})
+        res.status(200).json({
+            data: {user, posts},
+        })
+    } catch (error) {
+        next(error)
+    }
+}

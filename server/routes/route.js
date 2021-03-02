@@ -8,6 +8,8 @@ router.post('/login', userController.login);
 
 router.post('/newPost', userController.newPost)
 
+router.post('/takeUserProfileInfo', userController.takeProfileInfo)
+
 router.get('/user/:userId', userController.allowIfLoggedIn, userController.getUser);
 
 router.get('/users', userController.allowIfLoggedIn, userController.grantAccess('readAny', 'profile'), userController.getUsers);
