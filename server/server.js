@@ -15,7 +15,7 @@ const app = express();
 const PORT = process.env.PORT || 5000;
 
 mongoose
-    .connect('mongodb://localhost/course_project_db')
+    .connect('mongodb://localhost/course_project_db', { useFindAndModify: false })
     .then(() => {
         console.log('Подключились к базе данных');
     });
