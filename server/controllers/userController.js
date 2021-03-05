@@ -119,7 +119,8 @@ exports.grantAccess = function(action, resource) {
 
 exports.allowIfLoggedIn = async (req, res, next) => {
     try {
-        const user = res.locals.loggedInUser;
+        const { userId } = req.body
+        const user = await User.findById(userId)
         if (!user)
             return res.status(401).json({
                 error: 'Вы должны войти в систему, чтобы получить доступ к этому маршруту'

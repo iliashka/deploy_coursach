@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 const userController = require('../controllers/userController');
 const postsController = require('../controllers/postsController');
+const ratingController = require('../controllers/ratingController');
 require('events').EventEmitter.defaultMaxListeners = Infinity
 
 router.post('/singup', userController.singup);
@@ -24,7 +25,13 @@ router.post('/takeUserProfileInfo', postsController.takeProfileInfo)
 
 router.put('/plusLike', postsController.plusLike)
 
+router.put('/ratePost', ratingController.ratePost)
+
+router.put('/deletePost', userController.allowIfLoggedIn, postsController.deletePost)
+
 router.get('/posts', postsController.takePosts);
+
+router.post('/post', postsController.getPost)
 
 router.post('/getPostsByGenre', postsController.getPostsByGenre)
 

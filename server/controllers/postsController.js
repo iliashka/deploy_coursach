@@ -89,3 +89,32 @@ exports.getPostsByGenre = async (req, res, next) => {
         next(error)
     }
 }
+
+exports.deletePost = async (req, res, next) => {
+    try {
+        const { userId, postId } = req.body;
+        const user = await User.findById(userId);
+        await Post.findByIdAndDelete(postId);
+        const posts = await Post.find({login: user.login})
+        await res.json({
+            user,
+            posts
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.getPost = async (req, res, next) => {
+    console.log(req.body)
+    try {
+        const { postId } = req.body;
+        const post = await Post.findById(postId);
+        await res.status(200).json({
+            post
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
