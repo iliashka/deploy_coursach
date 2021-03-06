@@ -21,6 +21,9 @@ const UserSchema = new Schema({
         default: 'user',
         enum: ['user', 'admin']
     },
+    avatar: {
+        type: String,
+    },
     accessToken: {
         type: String
     }

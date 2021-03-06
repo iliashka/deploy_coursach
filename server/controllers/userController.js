@@ -3,6 +3,7 @@ const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
 const { roles } = require('../roles');
 const Post = require('../models/postsModel');
+const { cloudinary } = require('../utils/cloudinary');
 
 async function hashPassword(password) {
     return await bcrypt.hash(password, 10);
@@ -44,7 +45,7 @@ exports.login = async (req, res, next) => {
         });
         await User.findByIdAndUpdate(user._id, { accessToken })
         res.status(200).json({
-            data: { email: user.email, role: user.role, login: user.login, id: user._id },
+            data: { email: user.email, role: user.role, login: user.login, id: user._id, avatar: user.avatar },
             accessToken,
             message: 'Вы вошли в систему'
         })
@@ -132,3 +133,16 @@ exports.allowIfLoggedIn = async (req, res, next) => {
     }
 }
 
+exports.uploadAvatar = async (req, res, next) => {
+    try {
+       const { id, img } = req.body 
+       const uploadedResponse = await cloudinary.uploader.upload(img, 
+        async function(error, result) {
+            await User.findByIdAndUpdate(id, {avatar: result.url}, {new: true})
+        })
+        const user = await User.findById(id)
+       await res.json({user, msg: 'всё норм'})
+    } catch (error) {
+        next(error)
+    }
+}
