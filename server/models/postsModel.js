@@ -34,6 +34,9 @@ const PostsSchema = new Schema({
     post: {
         type: String,
         required: true
+    },
+    comments: {
+        type: Array
     }
 });
 

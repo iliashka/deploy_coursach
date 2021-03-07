@@ -3,6 +3,8 @@ const router = express.Router();
 const userController = require('../controllers/userController');
 const postsController = require('../controllers/postsController');
 const ratingController = require('../controllers/ratingController');
+const commentsController = require('../controllers/commentsController');
+
 require('events').EventEmitter.defaultMaxListeners = Infinity
 
 router.post('/singup', userController.singup);
@@ -33,9 +35,13 @@ router.put('/deletePost', userController.allowIfLoggedIn, postsController.delete
 
 router.get('/posts', postsController.takePosts);
 
-router.post('/post', postsController.getPost)
+router.post('/post', postsController.getPost);
+
+router.put('/editPost', postsController.editPost)
 
 router.post('/getPostsByGenre', postsController.getPostsByGenre)
+
+router.put('/addComment', commentsController.addComment)
 
 
 module.exports = router;

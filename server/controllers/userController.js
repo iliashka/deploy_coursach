@@ -136,7 +136,7 @@ exports.allowIfLoggedIn = async (req, res, next) => {
 exports.uploadAvatar = async (req, res, next) => {
     try {
        const { id, img } = req.body 
-       const uploadedResponse = await cloudinary.uploader.upload(img, 
+       const uploadedResponse = await cloudinary.uploader.upload(img, {gravity: "face", width: 150, height: 150, zoom: "0.7", crop: "thumb"}, 
         async function(error, result) {
             await User.findByIdAndUpdate(id, {avatar: result.url}, {new: true})
         })

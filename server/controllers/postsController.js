@@ -118,3 +118,15 @@ exports.getPost = async (req, res, next) => {
     }
 }
 
+exports.editPost = async (req, res, next) => {
+    console.log(req.body)
+    try {
+        const { id, genre, summary, postName, post } = req.body;
+        await Post.findByIdAndUpdate(id, {genre: genre, summary: summary, postName: postName, post: post}, {new: true})
+        await res.status(200).json({
+            message: 'Пост Изменён'
+        })
+    } catch (error) {
+        next(error)
+    }
+}

@@ -1,7 +1,4 @@
 const User = require('./../models/userModel');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const { roles } = require('../roles');
 const Post = require('../models/postsModel');
 const Like = require('../models/likesModel');
 const Rate = require('../models/rateModel')
