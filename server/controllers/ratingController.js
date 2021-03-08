@@ -10,7 +10,7 @@ exports.ratePost = async (req, res, next) => {
             if (!isRate) {
                 const newRate = new Rate({postId: postId, userId: userId, rate: rating});
                 await newRate.save()
-                const rate = await Rate.find({postId})
+                const rate = await Rate.findOne({postId})
                 const ratee = await rate.map((e) => {
                    return e.rate
                 }).reduce((a,b) => a+b);

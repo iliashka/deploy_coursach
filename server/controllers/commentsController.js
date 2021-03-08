@@ -12,8 +12,9 @@ exports.addComment = async (req, res, next) => {
         const post = await Post.findById(postId);
         await post.comments.push(newComment)
         await post.save();
+        const posts = await Post.find({});
         res.status(200).json({
-            post, message: 'коммент добавлен'
+            posts, message: 'коммент добавлен'
         })
     } catch (error) {
         next(error)

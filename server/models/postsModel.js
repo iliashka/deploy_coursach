@@ -24,11 +24,9 @@ const PostsSchema = new Schema({
     },
     likesCount: {
         type: Number,
-        required: true
     },
     rating: {
         type: Number,
-        required: true,
         trim: true
     },
     post: {
@@ -36,6 +34,9 @@ const PostsSchema = new Schema({
         required: true
     },
     comments: {
+        type: Array
+    },
+    tags: {
         type: Array
     }
 });

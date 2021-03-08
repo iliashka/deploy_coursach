@@ -4,6 +4,7 @@ const userController = require('../controllers/userController');
 const postsController = require('../controllers/postsController');
 const ratingController = require('../controllers/ratingController');
 const commentsController = require('../controllers/commentsController');
+const tagsController = require('../controllers/tagsController');
 
 require('events').EventEmitter.defaultMaxListeners = Infinity
 
@@ -42,6 +43,8 @@ router.put('/editPost', postsController.editPost)
 router.post('/getPostsByGenre', postsController.getPostsByGenre)
 
 router.put('/addComment', commentsController.addComment)
+
+router.put('/newTag', tagsController.newTag)
 
 
 module.exports = router;
