@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const { roles } = require('../roles');
 const Post = require('../models/postsModel');
 const Like = require('../models/likesModel');
+const Tags = require('../models/tagsModel');
 
 exports.takePosts = async (req, res, next) => {
     try {
@@ -18,9 +19,13 @@ exports.takePosts = async (req, res, next) => {
 
 exports.newPost = async (req, res, next) => {
     try {
-        const { login, post, postName, genre, summary } = req.body;
-        const newPost = new Post({ login, post, postName, genre, likesCount: 0, summary });
+        const { login, post, postName, genre, summary, tags } = req.body;
+        const newPost = await new Post({ login, post, postName, genre, likesCount: 0, summary, tags: tags });
         await newPost.save();
+        await tags.map((e, index) => {
+            const tag = new Tags({tagBody: e})
+            tag.save()
+        })
         res.json({
             data: newPost,
             message: 'Пост успешно добавлен'

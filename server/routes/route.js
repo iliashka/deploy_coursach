@@ -46,5 +46,7 @@ router.put('/addComment', commentsController.addComment)
 
 router.put('/newTag', tagsController.newTag)
 
+router.get('/tags', tagsController.tags)
+
 
 module.exports = router;

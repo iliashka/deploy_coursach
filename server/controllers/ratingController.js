@@ -6,11 +6,13 @@ const Rate = require('../models/rateModel')
 exports.ratePost = async (req, res, next) => {
     try {
         const { postId, userId, rating } = req.body;
+        console.log(req.body)
         const isRate = await Rate.findOne({postId, userId});
             if (!isRate) {
                 const newRate = new Rate({postId: postId, userId: userId, rate: rating});
                 await newRate.save()
-                const rate = await Rate.findOne({postId})
+                const rate = await Rate.find({postId})
+                await console.log(rate)
                 const ratee = await rate.map((e) => {
                    return e.rate
                 }).reduce((a,b) => a+b);

@@ -4,6 +4,7 @@ const bcrypt = require('bcrypt');
 const { roles } = require('../roles');
 const Post = require('../models/postsModel');
 const { cloudinary } = require('../utils/cloudinary');
+const Tags = require('../models/tagsModel');
 
 async function hashPassword(password) {
     return await bcrypt.hash(password, 10);
@@ -44,9 +45,12 @@ exports.login = async (req, res, next) => {
             expiresIn: '1d'
         });
         await User.findByIdAndUpdate(user._id, { accessToken })
+        const tags = await Tags.find({})
+        await console.log(tags)
         res.status(200).json({
             data: { email: user.email, role: user.role, login: user.login, id: user._id, avatar: user.avatar },
             accessToken,
+            tags,
             message: 'Вы вошли в систему'
         })
     } catch (error) {
