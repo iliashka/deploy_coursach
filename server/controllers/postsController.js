@@ -5,6 +5,28 @@ const { roles } = require('../roles');
 const Post = require('../models/postsModel');
 const Like = require('../models/likesModel');
 const Tags = require('../models/tagsModel');
+const elasticsearch = require('elasticsearch')
+
+const esClient = elasticsearch.Client({
+    host: "http://127.0.0.1:9200",
+})
+
+exports.createIndex = async (req, res, next) => {
+    try {
+        let str = `${req.post.post} ${req.post.summary} ${req.post.postName}`
+        console.log(str.trim())
+        esClient.index({
+            index: 'posts2',
+            body: {
+                "id": req.post._id,
+                "text": str
+            }
+        })
+        await res.status(200).json({msg: 'good'})
+    } catch (error) {
+        next(error)
+    }
+}
 
 exports.takePosts = async (req, res, next) => {
     try {
@@ -25,11 +47,27 @@ exports.newPost = async (req, res, next) => {
         await tags.map((e, index) => {
             const tag = new Tags({tagBody: e})
             tag.save()
-        })
-        res.json({
-            data: newPost,
-            message: 'Пост успешно добавлен'
-        })
+        });
+        req.post = newPost;
+        next()
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.search = async (req, res, next) => {
+    try {
+       const {text} = req.body
+       console.log(text)
+       await esClient.search({
+           index: 'posts2',
+           body: {
+               query: {
+                   match: {"text": text.trim()}
+               }
+           }
+       }) 
+       .then(response => res.json(response))
     } catch (error) {
         next(error)
     }

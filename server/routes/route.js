@@ -24,7 +24,7 @@ router.delete('.user/:userId', userController.allowIfLoggedIn, userController.gr
 
 
 
-router.post('/newPost', postsController.newPost)
+router.post('/newPost', postsController.newPost, postsController.createIndex)
 
 router.post('/takeUserProfileInfo', postsController.takeProfileInfo)
 
@@ -47,6 +47,8 @@ router.put('/addComment', commentsController.addComment)
 router.put('/newTag', tagsController.newTag)
 
 router.get('/tags', tagsController.tags)
+
+router.post('/search', postsController.search)
 
 
 module.exports = router;
