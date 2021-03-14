@@ -61,7 +61,7 @@ exports.login = async (req, res, next) => {
 exports.getUsers = async (req, res, next) => {
     const users = await User.find({});
     res.status(200).json({
-        data: users
+        users
     })
 }
 
@@ -80,12 +80,11 @@ exports.getUser = async (req, res, next) => {
 
 exports.updateUser = async (req, res, next) => {
     try {
-      const update = req.body;
-      const userId = req.params.userId;
-      await User.findByIdAndUpdate(userId, update);
-      const user = await User.findById(userId)
+      const {update, updateId} = req.body;
+      await User.findByIdAndUpdate(updateId, update, {new: true});
+      const users = await User.find({})
       res.status(200).json({
-          data: user,
+          users,
           message: 'Пользователь был обновлён'
       })
     } catch (error) {
@@ -95,10 +94,11 @@ exports.updateUser = async (req, res, next) => {
 
 exports.deleteUser = async (req, res, next) => {
     try {
-       const userId = req.params.userId;
-       await User.findByIdAndDelete(userId);
+       const {deletedId} = req.body;
+       await User.findByIdAndDelete(deletedId);
+       const users = await User.find({})
        res.status(200).json({
-           data: null,
+           users,
            message: 'Пользователь был удалён'
        });
     } catch (error) {

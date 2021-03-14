@@ -19,7 +19,8 @@ exports.createIndex = async (req, res, next) => {
             index: 'posts2',
             body: {
                 "id": req.post._id,
-                "text": str
+                "text": str,
+                "post": req.post
             }
         })
         await res.status(200).json({msg: 'good'})
@@ -43,10 +44,15 @@ exports.newPost = async (req, res, next) => {
     try {
         const { login, post, postName, genre, summary, tags } = req.body;
         const newPost = await new Post({ login, post, postName, genre, likesCount: 0, summary, tags: tags });
-        await newPost.save();
+        await newPost.save();        
         await tags.map((e, index) => {
-            const tag = new Tags({tagBody: e})
-            tag.save()
+            const question = Tags.findOne({tagBody: e});
+            if (!question) {
+                const tag = new Tags({tagBody: e})
+                tag.save()
+            }else{
+                return;
+            }
         });
         req.post = newPost;
         next()
@@ -63,11 +69,18 @@ exports.search = async (req, res, next) => {
            index: 'posts2',
            body: {
                query: {
-                   match: {"text": text.trim()}
+                   match: {
+                       "text": text.trim(),
+                    }, 
                }
            }
        }) 
-       .then(response => res.json(response))
+       .then(async (response) => {
+        const arr = response.hits.hits.map((e, i) => {
+            return new Object({id: e._source.post})
+        }) 
+            await res.status(200).json(arr)
+        })
     } catch (error) {
         next(error)
     }
@@ -149,7 +162,6 @@ exports.deletePost = async (req, res, next) => {
 }
 
 exports.getPost = async (req, res, next) => {
-    console.log(req.body)
     try {
         const { postId } = req.body;
         const post = await Post.findById(postId);
