@@ -41,11 +41,16 @@ app.use(async (req, res, next) => {
     }
 });
 
+app.use('/', routes);
+
 if(process.env.NODE_ENV === 'production') {
-    app.use(express.static('./client/build'))
+    app.use('/', express.static(path.join(__dirname, 'cd ./client', 'build')))
+
+    app.get('*', ((req, res) => {
+        res.sendFile(path.resolve(__dirname, 'cd ./client', 'cd ./client/build', 'cd ./client/build/index.html'))
+    }))
 }
 
-app.use('/', routes);
 
 
 
