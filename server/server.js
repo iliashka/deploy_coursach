@@ -6,7 +6,7 @@ const path = require('path');
 const User = require('./models/userModel');
 const routes = require('./routes/route');
 const cors = require('cors');
-const path = require('path')
+
 
 
 require('dotenv').config({

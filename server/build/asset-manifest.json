@@ -1,0 +1,23 @@
+{
+  "files": {
+    "main.css": "/deploy_front/static/css/main.e16b7527.chunk.css",
+    "main.js": "/deploy_front/static/js/main.e0315f81.chunk.js",
+    "main.js.map": "/deploy_front/static/js/main.e0315f81.chunk.js.map",
+    "runtime-main.js": "/deploy_front/static/js/runtime-main.62b308bb.js",
+    "runtime-main.js.map": "/deploy_front/static/js/runtime-main.62b308bb.js.map",
+    "static/css/2.eb380ff9.chunk.css": "/deploy_front/static/css/2.eb380ff9.chunk.css",
+    "static/js/2.66d40371.chunk.js": "/deploy_front/static/js/2.66d40371.chunk.js",
+    "static/js/2.66d40371.chunk.js.map": "/deploy_front/static/js/2.66d40371.chunk.js.map",
+    "index.html": "/deploy_front/index.html",
+    "static/css/2.eb380ff9.chunk.css.map": "/deploy_front/static/css/2.eb380ff9.chunk.css.map",
+    "static/css/main.e16b7527.chunk.css.map": "/deploy_front/static/css/main.e16b7527.chunk.css.map",
+    "static/js/2.66d40371.chunk.js.LICENSE.txt": "/deploy_front/static/js/2.66d40371.chunk.js.LICENSE.txt"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.62b308bb.js",
+    "static/css/2.eb380ff9.chunk.css",
+    "static/js/2.66d40371.chunk.js",
+    "static/css/main.e16b7527.chunk.css",
+    "static/js/main.e0315f81.chunk.js"
+  ]
+}
