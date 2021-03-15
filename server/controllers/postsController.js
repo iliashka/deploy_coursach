@@ -16,7 +16,7 @@ exports.createIndex = async (req, res, next) => {
         let str = `${req.post.post} ${req.post.summary} ${req.post.postName}`
         console.log(str.trim())
         esClient.index({
-            index: 'posts2',
+            index: "posts2",
             body: {
                 "id": req.post._id,
                 "text": str,
@@ -69,15 +69,17 @@ exports.search = async (req, res, next) => {
            index: 'posts2',
            body: {
                query: {
-                   match: {
-                       "text": text.trim(),
+                   query_string: {
+                       "default_field": "text",
+                       query: `*${text}*`,
                     }, 
+                    
                }
            }
        }) 
        .then(async (response) => {
         const arr = response.hits.hits.map((e, i) => {
-            return new Object({id: e._source.post})
+            return e._source.post
         }) 
             await res.status(200).json(arr)
         })

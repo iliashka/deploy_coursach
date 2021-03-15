@@ -26,7 +26,13 @@ const UserSchema = new Schema({
     },
     accessToken: {
         type: String
+    },
+    status: {
+        type: String,
+        default: 'active',
+        enum: ['active', 'blocked']
     }
+
 });
 
 const User = mongoose.model('user', UserSchema);

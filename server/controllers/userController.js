@@ -18,7 +18,7 @@ exports.singup = async (req, res, next) => {
     try {
         const { login, email, password, role } = req.body
         const hashedPassword = await hashPassword(password);
-        const newUser = new User({ login, email, password: hashedPassword, role: role || 'user' })
+        const newUser = new User({ login, email, password: hashedPassword, role: role || 'user', status: 'active' })
         const accessToken = jwt.sign({ userId: newUser._id }, process.env.JWT_SECRET, {
             expiresIn: '1d'
         });
