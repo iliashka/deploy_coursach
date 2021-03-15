@@ -47,7 +47,7 @@ if(process.env.NODE_ENV === 'production') {
     app.use('/', express.static(path.join(__dirname, 'cd ./client', 'build')))
 
     app.get('*', ((req, res) => {
-        res.sendFile(path.resolve(__dirname, 'cd ./client', 'cd ./client/build', 'cd ./client/build/index.html'))
+        res.sendFile(path.resolve(__dirname, 'cd ./client', 'build', 'index.html'))
     }))
 }
 
