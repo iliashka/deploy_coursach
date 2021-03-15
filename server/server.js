@@ -17,7 +17,7 @@ app.use(express.json({limit: '50mb'}));
 app.use(express.urlencoded({limit: '50mb', extended: true}))
 
 mongoose
-    .connect('mongodb://localhost/course_project_db', { useFindAndModify: false })
+    .connect('mongodb+srv://ilya:medik852456@cursachcluster.lht8y.mongodb.net/myFirstDatabase?retryWrites=true&w=majority', { useFindAndModify: false, useUnifiedTopology: true,  useNewUrlParser: true })
     .then(() => {
         console.log('Подключились к базе данных');
     });
