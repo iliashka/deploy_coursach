@@ -35,11 +35,11 @@ exports.singup = async (req, res, next) => {
 
 exports.facebookAuth = async (req, res, next) => {
     try {
-        const {id, email, password, role, avatar} = req.body
+        const {id, email, password, role, avatar, login} = req.body
         const question = await User.findOne({fbId: id})
         const tags = await Tags.find({})
         if (!question) {
-            const user = await new User ({fbId: id, email: email, accessToken: password, password: password, role: role, status: 'active', avatar: avatar})
+            const user = await new User ({ login: login, fbId: id, email: email, accessToken: password, password: password, role: role, status: 'active', avatar: avatar})
             await user.save()
             await console.log(user)
             await res.status(200).json({
