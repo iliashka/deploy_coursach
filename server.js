@@ -3,8 +3,8 @@ const mongoose = require('mongoose');
 const bodyParser = require('body-parser');
 const jwt = require('jsonwebtoken');
 const path = require('path');
-const User = require('./models/userModel');
-const routes = require('./routes/route');
+const User = require('./server/models/userModel');
+const routes = require('./server/routes/route');
 
 
 
@@ -44,9 +44,9 @@ app.use(async (req, res, next) => {
 app.use('/', routes);
 
 if(process.env.NODE_ENV === 'production') {
-    app.use('/client', express.static(path.join(__dirname, 'client', 'build')))
+    app.use(express.static('client/build'))
 
-    app.get('*', ((req, res) => {
+    app.get('*', ((req, res) =>{
         res.sendFile(path.resolve(__dirname, 'client', 'build', 'index.html'))
     }))
 }
