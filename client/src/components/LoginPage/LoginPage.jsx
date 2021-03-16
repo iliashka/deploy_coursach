@@ -40,6 +40,7 @@ function LoginPage({authUser, setAuthUser, setTags}) {
         }))
         .then((res) => {
           setAuthUser(res.data.user)
+          setTags(res.data.tags.map((e) => e.tagBody))
         })
       }else{
         return;

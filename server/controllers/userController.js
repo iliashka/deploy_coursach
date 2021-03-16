@@ -37,16 +37,19 @@ exports.facebookAuth = async (req, res, next) => {
     try {
         const {id, email, password, role, avatar} = req.body
         const question = await User.findById(id)
+        const tags = await Tags.find({})
         if (!question) {
             const user = await new User ({_id: id, email: email, accessToken: password, password: password, role: role, status: 'active', avatar: avatar})
             await user.save()
             await res.status(200).json({
-                user
+                user,
+                tags
             })
         }else{
             const user = await User.findById(id)
             res.status(200).json({
-                user
+                user,
+                tags
             })
         }
     } catch (error) {
