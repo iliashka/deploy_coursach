@@ -10,6 +10,7 @@ import MyPage from './components/ProfilePage/MyPage';
 import PostPage from './components/HomePage/Posts/PostPage';
 import EditPost from './components/HomePage/Posts/EditPost';
 import AdminPage from './components/AdminPage/AdminPage';
+import Privacy from './components/AdminPage/Privacy';
 
 function App() {
   const [authUser, setAuthUser] = React.useState({
@@ -70,6 +71,7 @@ function App() {
                                                   setUsers={setUsers} 
                                                   user={authUser} 
                                                   users={users} />} />
+      <Route path='/Privacy' render={() =>      <Privacy/>}/>
     </div>
   );
 }

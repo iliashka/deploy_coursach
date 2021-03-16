@@ -82,11 +82,11 @@ function MyPage({ user, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost
                                             <li><button onClick = {() => deletePostHandler(post)} style = {{ marginRight: '10px' }} className = 'btn btn-danger' type = 'button' >
                                                 Удалить
                                             </button ></li>
-                                            <li><button onClick={() => editPostHandler(post)} style={{marginRight: '10px'}} className='btn btn-warning' type='button'>
-                                                <Link to='/EditPage' style={{color: 'white', textDecoration: 'none'}}>Редактировать</Link>
+                                            <li><button style={{marginRight: '10px'}} className='btn btn-warning' type='button'>
+                                                <Link onClick={() => editPostHandler(post)} to='/EditPage' style={{color: 'white', textDecoration: 'none'}}>Редактировать</Link>
                                             </button></li>
-                                            <li><button onClick={() => readPostHandler(post)} className='btn btn-primary' type='button'>
-                                                <Link to='/PostPage' style={{color: 'white', textDecoration: 'none'}}>Читать</Link>
+                                            <li><button className='btn btn-primary' type='button'>
+                                                <Link onClick={() => readPostHandler(post)} to='/PostPage' style={{color: 'white', textDecoration: 'none'}}>Читать</Link>
                                             </button></li>
                                         </ul>
                                     </div>

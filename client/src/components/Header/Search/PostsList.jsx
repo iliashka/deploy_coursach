@@ -19,8 +19,8 @@ function PostsList({postsList=[], setPost, setPostsList}) {
                     return (
                         <div style={{ position: 'absolute', background: 'white', width: '20rem', display: 'flex', justifyContent: 'space-between'}} className='border' key={e.postName}>
                             <h5>{e.postName}</h5>
-                            <button onClick={() => readPostHandler(e._id)} className='btn btn-primary' type='button'>
-                                <Link style={{color: 'white', textDecoration: 'none'}} to='/PostPage'>Открыть</Link>
+                            <button className='btn btn-primary' type='button'>
+                                <Link onClick={() => readPostHandler(e._id)} style={{color: 'white', textDecoration: 'none'}} to='/PostPage'>Открыть</Link>
                             </button>
                         </div>
                     )

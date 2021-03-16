@@ -13,6 +13,7 @@
     "qs": "^6.9.6",
     "react": "^17.0.1",
     "react-dom": "^17.0.1",
+    "react-facebook-auth": "^1.4.0",
     "react-file-drop": "^3.1.2",
     "react-markdown": "^5.0.3",
     "react-mde": "^11.0.6",
@@ -31,7 +32,7 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },
-  "proxy": "http:/localhost:5000",
+  "proxy": "http://localhost:5000",
   "engines": {
     "node": "12.x"
   },
