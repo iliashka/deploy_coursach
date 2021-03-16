@@ -13,7 +13,7 @@ function RegisterPage() {
     })
 
     const registerHandler = () => {
-        axios.post('singup', qs.stringify(user))
+        axios.post('api/singup', qs.stringify(user))
         .then((res) => {
             setUser(0)
             alert(user.login + ', ' + res.data.message)

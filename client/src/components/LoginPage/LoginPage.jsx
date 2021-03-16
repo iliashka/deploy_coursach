@@ -11,7 +11,7 @@ function LoginPage({authUser, setAuthUser, setTags}) {
     })
 
     const loginHandler = () => {
-      axios.post('login', qs.stringify(preUser))
+      axios.post('api/login', qs.stringify(preUser))
         .then((res) => { 
           localStorage.setItem("user", JSON.stringify(res.data.data))
           setAuthUser(res.data.data)
