@@ -1,0 +1,14 @@
+.wrapper {
+    width: 80%;
+    margin: auto;
+    height: auto;
+    margin-top: 3rem;
+}
+
+.header {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    margin-bottom: 3rem;
+}
+

@@ -1,0 +1,19 @@
+.link {
+    color: white;
+
+}
+
+.link:hover {
+    color: white;
+    text-decoration: none;
+}
+
+.logo {
+    color: black;
+    font-size: 2rem;
+}
+
+.logo:hover {
+    color: black;
+    text-decoration: none;
+}
