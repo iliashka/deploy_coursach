@@ -41,7 +41,7 @@ app.use(async (req, res, next) => {
     }
 });
 
-app.use('/', routes);
+app.use('/api/', routes);
 
 if(process.env.NODE_ENV === 'production') {
     app.use(express.static('client/build'))
