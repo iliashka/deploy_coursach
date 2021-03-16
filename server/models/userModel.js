@@ -7,6 +7,9 @@ const UserSchema = new Schema({
         requred: true,
         trim: true
     },
+    fbId: {
+        type: String
+    },
     email: {
         type: String, 
         requred: true,
