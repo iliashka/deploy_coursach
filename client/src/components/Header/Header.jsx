@@ -17,14 +17,14 @@ function Header({ setMyPageInfo, user, setUser, setPost, setUsers }) {
     }
 
     const myPageHandler = () => {
-      axios.post('takeUserProfileInfo', qs.stringify({login: user.login}))
+      axios.post('api/takeUserProfileInfo', qs.stringify({login: user.login}))
       .then((res) => {
         setMyPageInfo(res.data.data)
       })
     }
     const takeUsersHandler = () => {
       console.log(user)
-      axios.post('users', qs.stringify({userId: user.id}))
+      axios.post('api/users', qs.stringify({userId: user.id}))
       .then((res) => {
         console.log(res.data.users)
         setUsers(res.data.users)

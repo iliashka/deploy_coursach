@@ -9,12 +9,12 @@ function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo,
 
     window.onload = function() {
         const auth = JSON.parse(localStorage.getItem("user"));
-        axios.get('posts')
+        axios.get('api/posts')
         .then((res) => {
         setPosts(res.data.posts)
         })
         setAuthUser(auth)
-        axios.get('tags')
+        axios.get('api/tags')
         .then((res) => {
           setTags(res.data.tags.map(e => e.tagBody))
         })

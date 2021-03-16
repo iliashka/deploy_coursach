@@ -10,7 +10,7 @@ function PostPage({ user, post, setPosts }) {
         if(user === null) {
             alert('Чтобы поставить рейтинг, сначала войдите в систему!')
         }else{
-            axios.put('ratePost', qs.stringify({postId: post._id, userId: user.id, rating: newRating}))
+            axios.put('api/ratePost', qs.stringify({postId: post._id, userId: user.id, rating: newRating}))
             .then((res) => {
             alert(res.data.message)
             setPosts(res.data.posts)
@@ -22,7 +22,7 @@ function PostPage({ user, post, setPosts }) {
         if (user === null) {
             alert('Чтобы оценить произведение, сначала войдите в систему!')
         } else {
-            axios.put('plusLike', qs.stringify({ postId: post._id, userId: user.id }))
+            axios.put('api/plusLike', qs.stringify({ postId: post._id, userId: user.id }))
                 .then((res) => {
                     console.log(res.data)
                     setPosts(res.data.posts)

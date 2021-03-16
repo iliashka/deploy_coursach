@@ -17,7 +17,7 @@ function EditPost({ editPost }) {
     })
 
     const editPostHandler = () => {
-        axios.put('editPost', qs.stringify({ genre: preEditPost.genre,
+        axios.put('api/editPost', qs.stringify({ genre: preEditPost.genre,
                                             id: editPost._id, 
                                             summary: preEditPost.summary, 
                                             postName: preEditPost.postName, 

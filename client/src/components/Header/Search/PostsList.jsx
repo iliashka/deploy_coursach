@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 function PostsList({postsList=[], setPost, setPostsList}) {
 
     function readPostHandler (id){
-        axios.post('post', QueryString.stringify({postId: id}))
+        axios.post('api/post', QueryString.stringify({postId: id}))
         .then((res) => {
             setPost(res.data.post)
             setPostsList([])

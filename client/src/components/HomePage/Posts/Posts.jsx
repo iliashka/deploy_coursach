@@ -18,7 +18,7 @@ function Posts({ user, posts, setPost, setPosts, setProfileInfo }) {
 
     React.useEffect(() => {
         console.log(count)
-        axios.get('posts')
+        axios.get('api/posts')
         .then((res) => {
             setPosts(res.data.posts)
         })
@@ -26,7 +26,7 @@ function Posts({ user, posts, setPost, setPosts, setProfileInfo }) {
 
 
     function openProfilePage(post) {
-        axios.post('takeUserProfileInfo', qs.stringify({ login: post.login }))
+        axios.post('api/takeUserProfileInfo', qs.stringify({ login: post.login }))
             .then((res) => {
                 setProfileInfo(res.data.data)
             })
@@ -36,7 +36,7 @@ function Posts({ user, posts, setPost, setPosts, setProfileInfo }) {
         if (user === null) {
             alert('Чтобы оценить произведение, сначала войдите в систему!')
         } else {
-            axios.put('plusLike', qs.stringify({ postId: post._id, userId: user.id }))
+            axios.put('api/plusLike', qs.stringify({ postId: post._id, userId: user.id }))
                 .then((res) => {
                     console.log(res.data)
                     setPosts(res.data.posts)
@@ -48,7 +48,7 @@ function Posts({ user, posts, setPost, setPosts, setProfileInfo }) {
         if (user === null) {
             alert('Чтобы поставить рейтинг, сначала войдите в систему!')
         } else {
-            axios.put('ratePost', qs.stringify({ postId: post._id, userId: user.id, rating: newRating }))
+            axios.put('api/ratePost', qs.stringify({ postId: post._id, userId: user.id, rating: newRating }))
                 .then((res) => {
                     alert(res.data.message)
                     setPosts(res.data.posts)
@@ -58,7 +58,7 @@ function Posts({ user, posts, setPost, setPosts, setProfileInfo }) {
 
     function readPostHandler(post) {
         console.log(post)
-        axios.post('post', qs.stringify({ postId: post._id }))
+        axios.post('api/post', qs.stringify({ postId: post._id }))
             .then((res) => {
                 setPost(res.data.post)
             })
@@ -68,7 +68,7 @@ function Posts({ user, posts, setPost, setPosts, setProfileInfo }) {
         if(user === null){
             alert('Чтобы добавить комментарий, сначала войдите в систему.')
         }else{
-            axios.put('addComment', qs.stringify({postId: post._id, userLogin: user.login, comment: commentBody}))
+            axios.put('api/addComment', qs.stringify({postId: post._id, userLogin: user.login, comment: commentBody}))
             .then((res) => {
             setPosts(res.data.posts)
         })

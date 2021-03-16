@@ -26,7 +26,7 @@ function FileLoader({user, setUser}) {
     }
 
     const uploadImage = (base64EncodedImage) => {
-        axios.put('uploadAvatar', qs.stringify({id: user.id, img: base64EncodedImage}))
+        axios.put('api/uploadAvatar', qs.stringify({id: user.id, img: base64EncodedImage}))
         .then((res) => {
             setUser(res.data.user)
         })

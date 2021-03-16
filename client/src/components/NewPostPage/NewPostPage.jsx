@@ -19,7 +19,7 @@ function NewPostPage({ user, tags, setTags }) {
     })
 
     const newPostHandler = () => {
-        axios.post('newPost', qs.stringify({
+        axios.post('api/newPost', qs.stringify({
             tags: preTags[0],
             post: value,
             postName: newPost.postName,

@@ -8,28 +8,28 @@ import ReactStars from 'react-rating-stars-component'
 function MyPage({ user, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost }) {
 
     const searchByGenre = (e) => {
-        axios.post('getPostsByGenre', qs.stringify({ genre: e.target.value, id: user.id }))
+        axios.post('api/getPostsByGenre', qs.stringify({ genre: e.target.value, id: user.id }))
             .then((res) => {
                 setMyPageInfo(res.data)
             })
     }
 
     function deletePostHandler(post) {
-        axios.put('deletePost', qs.stringify({ postId: post._id, userId: user.id }))
+        axios.put('api/deletePost', qs.stringify({ postId: post._id, userId: user.id }))
             .then((res) => {
                 setMyPageInfo(res.data)
             })
     }
 
     function readPostHandler(post) {
-        axios.post('post', qs.stringify({ postId: post._id }))
+        axios.post('api/post', qs.stringify({ postId: post._id }))
             .then((res) => {
                 setPost(res.data.post)
             })
     }
 
     function editPostHandler(post) {
-        axios.post('post', qs.stringify({ postId: post._id }))
+        axios.post('api/post', qs.stringify({ postId: post._id }))
             .then((res) => {
                 setEditPost(res.data.post)
             })

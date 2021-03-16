@@ -8,7 +8,7 @@ function SearchComponent({setPost}) {
     const [postsList, setPostsList] = React.useState();
 
     const postData = () => {
-        axios.post('search', QueryString.stringify({text: input}))
+        axios.post('api/search', QueryString.stringify({text: input}))
         .then((res) => {
             setPostsList(res.data);
         })

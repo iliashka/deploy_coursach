@@ -6,7 +6,7 @@ import { Link } from 'react-router-dom'
 function AdminPage({users, user, setUsers, setEditPost, setProfileInfo}) {
     const [userPosts, setUserPosts] = React.useState()
     function deleteUser(id) {
-        axios.put('deleteUser', QueryString.stringify({userId: user.id, deletedId: id}))
+        axios.put('api/deleteUser', QueryString.stringify({userId: user.id, deletedId: id}))
         .then((res) => {
             alert(res.data.message);
             setUsers(res.data.users)
@@ -14,12 +14,12 @@ function AdminPage({users, user, setUsers, setEditPost, setProfileInfo}) {
     }
     function updateRole(updatedUser) {
         if (updatedUser.role === 'admin') {
-            axios.put('updateUser', QueryString.stringify({userId: user.id, updateId: updatedUser._id, update: {role:'user'}}))
+            axios.put('api/updateUser', QueryString.stringify({userId: user.id, updateId: updatedUser._id, update: {role:'user'}}))
             .then((res)=> {
                 setUsers(res.data.users)
             })
         }else{
-            axios.put('updateUser', QueryString.stringify({userId: user.id, updateId: updatedUser._id, update: {role:'admin'}}))
+            axios.put('api/updateUser', QueryString.stringify({userId: user.id, updateId: updatedUser._id, update: {role:'admin'}}))
             .then((res)=> {
                 setUsers(res.data.users)
             })
@@ -27,31 +27,31 @@ function AdminPage({users, user, setUsers, setEditPost, setProfileInfo}) {
     }
     function changeStatus(updatedUser) {
         if (updatedUser.status === 'active') {
-            axios.put('updateUser', QueryString.stringify({userId: user.id, updateId: updatedUser._id, update: {status:'blocked'}}))
+            axios.put('api/updateUser', QueryString.stringify({userId: user.id, updateId: updatedUser._id, update: {status:'blocked'}}))
             .then((res)=> {
                 setUsers(res.data.users)
             })
         }else{
-            axios.put('updateUser', QueryString.stringify({userId: user.id, updateId: updatedUser._id, update: {status:'active'}}))
+            axios.put('api/updateUser', QueryString.stringify({userId: user.id, updateId: updatedUser._id, update: {status:'active'}}))
             .then((res)=> {
                 setUsers(res.data.users)
             })
         }
     }
     function getUserPosts(login) {
-        axios.post('takeUserProfileInfo', QueryString.stringify({login: login}))
+        axios.post('api/takeUserProfileInfo', QueryString.stringify({login: login}))
         .then((res) => {
             setUserPosts(res.data.data.posts)
         })
     }
     function openEditPage(id) {
-        axios.post('post', QueryString.stringify({postId: id}))
+        axios.post('api/post', QueryString.stringify({postId: id}))
         .then(res => {
             setEditPost(res.data.post)
         })
     }
     function openProfilePage(login) {
-        axios.post('takeUserProfileInfo', QueryString.stringify({ login: login }))
+        axios.post('api/takeUserProfileInfo', QueryString.stringify({ login: login }))
             .then((res) => {
                 setProfileInfo(res.data.data)
             })
