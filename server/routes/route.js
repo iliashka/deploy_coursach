@@ -10,6 +10,8 @@ require('events').EventEmitter.defaultMaxListeners = Infinity
 
 router.post('/singup', userController.singup);
 
+router.post('/facebookAuth', userController.facebookAuth)
+
 router.put('/uploadAvatar', userController.uploadAvatar)
 
 router.post('/login', userController.login);

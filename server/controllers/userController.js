@@ -33,6 +33,27 @@ exports.singup = async (req, res, next) => {
     }
 }
 
+exports.facebookAuth = async (req, res, next) => {
+    try {
+        const {id, email, password, role, avatar} = req.body
+        const question = await User.findById(id)
+        if (!question) {
+            const user = await new User ({_id: id, email: email, accessToken: password, password: password, role: role, status: 'active', avatar: avatar})
+            await user.save()
+            await res.status(200).json({
+                user
+            })
+        }else{
+            const user = await User.findById(id)
+            res.status(200).json({
+                user
+            })
+        }
+    } catch (error) {
+        next(error)
+    }
+}
+
 exports.login = async (req, res, next) => {
     console.log(req.body)
     try {

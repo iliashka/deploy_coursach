@@ -25,12 +25,25 @@ function LoginPage({authUser, setAuthUser, setTags}) {
     }
     const MyFacebookButton = ({ onClick }) => (
       <button type='button' className='btn btn-primary' onClick={onClick}>
-        <i class="bi bi-facebook"></i> Login with facebook
+        <i class="bi bi-facebook"></i> <Link to='/HomePage' className={s.link}>Login with facebook</Link>
       </button>
     );
     const authenticate = (response) => {
-      console.log(response);
-      // Api call to server so we can validate the token
+      if(response){
+        axios.post('api/facebookAuth', qs.stringify({
+          id: response.id,
+          email: response.email,
+          role: 'user',
+          login: response.name,
+          avatar: response.picture.data.url,
+          password: response.accessToken
+        }))
+        .then((res) => {
+          setAuthUser(res.data.user)
+        })
+      }else{
+        return;
+      }
     };
     return (
         <div style={{marginTop: '4em'}} className="col-md-6 offset-md-3">
