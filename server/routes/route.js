@@ -8,47 +8,47 @@ const tagsController = require('../controllers/tagsController');
 
 require('events').EventEmitter.defaultMaxListeners = Infinity
 
-router.post('/singup', userController.singup);
+router.post('/api/singup', userController.singup);
 
-router.put('/uploadAvatar', userController.uploadAvatar)
+router.put('/api/uploadAvatar', userController.uploadAvatar)
 
-router.post('/login', userController.login);
+router.post('/api/login', userController.login);
 
-router.get('/user/:userId', userController.allowIfLoggedIn, userController.getUser);
+router.get('/api/user/:userId', userController.allowIfLoggedIn, userController.getUser);
 
-router.post('/users', userController.allowIfLoggedIn, userController.grantAccess('readAny', 'profile'), userController.getUsers);
+router.post('/api/users', userController.allowIfLoggedIn, userController.grantAccess('readAny', 'profile'), userController.getUsers);
 
-router.put('/updateUser', userController.allowIfLoggedIn, userController.grantAccess('updateAny', 'profile'), userController.updateUser);
+router.put('/api/updateUser', userController.allowIfLoggedIn, userController.grantAccess('updateAny', 'profile'), userController.updateUser);
 
-router.put('/deleteUser', userController.allowIfLoggedIn, userController.grantAccess('deleteAny', 'profile'), userController.deleteUser);
+router.put('/api/deleteUser', userController.allowIfLoggedIn, userController.grantAccess('deleteAny', 'profile'), userController.deleteUser);
 
 
 
-router.post('/newPost', postsController.newPost, postsController.createIndex)
+router.post('/api/newPost', postsController.newPost, postsController.createIndex)
 
-router.post('/takeUserProfileInfo', postsController.takeProfileInfo)
+router.post('/api/takeUserProfileInfo', postsController.takeProfileInfo)
 
-router.put('/plusLike', postsController.plusLike)
+router.put('/api/plusLike', postsController.plusLike)
 
-router.put('/ratePost', ratingController.ratePost)
+router.put('/api/ratePost', ratingController.ratePost)
 
-router.put('/deletePost', userController.allowIfLoggedIn, postsController.deletePost)
+router.put('/api/deletePost', userController.allowIfLoggedIn, postsController.deletePost)
 
-router.get('/posts', postsController.takePosts);
+router.get('/api/posts', postsController.takePosts);
 
-router.post('/post', postsController.getPost);
+router.post('/api/post', postsController.getPost);
 
-router.put('/editPost', postsController.editPost)
+router.put('/api/editPost', postsController.editPost)
 
-router.post('/getPostsByGenre', postsController.getPostsByGenre)
+router.post('/api/getPostsByGenre', postsController.getPostsByGenre)
 
-router.put('/addComment', commentsController.addComment)
+router.put('/api/addComment', commentsController.addComment)
 
-router.put('/newTag', tagsController.newTag)
+router.put('/api/newTag', tagsController.newTag)
 
-router.get('/tags', tagsController.tags)
+router.get('/api/tags', tagsController.tags)
 
-router.post('/search', postsController.search)
+router.post('/api/search', postsController.search)
 
 
 module.exports = router;
