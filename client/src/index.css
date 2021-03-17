@@ -24,9 +24,10 @@ body.dark .card-title {
   background: #343a40;
   color: #fff
 }
-body.dark .navbar .navbar-light .bg-light {
-  background: #343a40;
-  color: #fff
+body.dark .navbar {
+  background: #6e6f70 !important;
+  color: #fff !important;
+  border-bottom: 1px solid white
 }
 
 body.dark .h {
@@ -36,4 +37,168 @@ body.dark .h {
 code {
   font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
+}
+body .btn.btn-primary{
+  background: #A38D65 !important;
+  border-color: #A38D65;
+}
+
+@media only screen and (max-width: 1200px){
+  .header .navbar button {
+    width: 105px;
+    padding: 6px 1px;
+    font-size: 13px;
+  } 
+  .header .navbar .btn a {
+    font-size: 13px;
+  }
+  .header .navbar .form-inline div input{
+    max-width: 150px;
+  }
+  .header .navbar a{
+    font-size: 25px;
+  }
+  body .card-header h3 {
+    font-size: 25px;
+  }
+  body .border div h5 {
+    font-size: 16px;
+  }
+  body .wrapper {
+    width: 100%;
+    margin: 0;
+  }
+  body .adminTable {
+    max-width: 90%;
+    padding-top: 3rem;
+    margin: auto;
+  }
+  body .adminTable >.table{
+    width: 100%;
+    position: relative;
+  }
+}
+@media only screen and (max-width: 320px) {
+  .header .navbar {
+    width: 100vw;
+  }
+  .header .navbar .form-inline {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 420px) {
+  body .header{
+    max-width: 100%;
+  }
+  body .header >.navbar {
+    max-width: 100%;
+    padding: 5px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+  }
+  body .card-header h3 {
+    font-size: 18px;
+  }
+  .header .navbar button{
+    margin-left: 10px;
+  }
+  .header .navbar .adminButton {
+    margin-left: 0;
+  }
+  .header .navbar .profileButton {
+    margin-right: 0 !important;
+  }
+  .header .navbar .form-inline {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  body .border {
+    display: flex;
+    flex-direction: column;
+  }
+}
+@media only screen and (max-width: 350px) {
+  body .header{
+    max-width: 100%;
+  }
+  body .header >.navbar >.btn {
+    width: 80px;
+  }
+  body .header >.navbar >.btn a {
+    font-size: 10px;
+  }
+  .header .navbar .form-inline div input{
+    max-width: 100px;
+  }
+  body .HomePage_header__1Sk4-{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+  }
+  body .header >.navbar >.form-inline >.btn {
+    width: 80px;
+  }
+  body .header >.navbar >.form-inline >.btn a {
+    font-size: 10px;
+  }
+  body .header >.navbar {
+    max-width: 100%;
+    padding: 5px;
+    position: relative;
+    display: flex;
+    justify-content: space-between;
+  }
+  body .card-header {
+    padding: 12px 4px;
+    display: flex;
+    justify-content: space-between;
+  }
+  body .card-header .btn{
+    width: 60px;
+    height: 30px;
+    padding: 0;
+  }
+  body .card-header h3:first-child {
+    font-size: 18px;
+    margin-left: 0 !important;
+  }
+  body .card-header h3:last-child {
+    font-size: 18px;
+    margin-right: 0 !important;
+  }
+  .header .navbar button{
+    margin-left: 10px;
+  }
+  .header .navbar .adminButton {
+    margin-left: 0;
+  }
+  .header .navbar .profileButton {
+    margin-right: 0 !important;
+  }
+  .header .navbar .form-inline {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+  }
+  body .border {
+    display: flex;
+    flex-direction: column;
+    text-align: start;
+  }
+}
+@media only screen and (max-width: 1925px) {
+  body .header >.navbar {
+    max-width: 100%;
+    padding: 8px 10%
+  }
+  .header .navbar .profileButton {
+    margin-right: 0 !important;
+  }
+  
 }

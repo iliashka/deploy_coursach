@@ -76,9 +76,9 @@ function Posts({ user, posts, setPost, setPosts, setProfileInfo }) {
     }
 
     return (
-        <div>
+        <div className='wrapper'>
             {posts && posts.map((post, index) => {
-                return <div className="card border-secondary mb-3" style={{ maxWidth: '80%', margin: 'auto' }}>
+                return <div className="card border-secondary mb-3" >
                     <div style={{ display: 'flex', justifyContent: 'space-between' }} className="card-header">
                         <h3 style={{ marginLeft: '1rem' }}>Автор: <Link to="/ProfilePage" onClick={() => openProfilePage(post)}>{post.login}</Link></h3>
                         <h3 style={{ marginRight: '1rem' }}>Жанр: {post.genre}</h3>

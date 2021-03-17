@@ -34,18 +34,18 @@ function Header({ setMyPageInfo, user, setUser, setPost, setUsers }) {
     return (
         <div className='header'>
           <nav className="navbar navbar-light bg-light">
-            <Link className={s.logo} onClick={() => document.location.href = 'HomePage'}>Фанфики</Link>
+            <Link className={s.logo} onClick={() => document.location.href = 'HomePage'}></Link>
             <button onClick={changeTheme} className='btn'>Сменить тему</button>
-            {user!==null && user.role==='admin'? <button type='button' className='btn btn-primary'>
+            {user!==null && user.role==='admin'? <button type='button' className='btn btn-primary adminButton'>
               <Link onClick={takeUsersHandler} style={{color: 'white', textDecoration: 'none'}} to='/AdminPage'>Страница админа</Link>
             </button>:<div></div>}
             <form className="form-inline">
               <SearchComponent setPost={setPost}/>
-              <button style={{marginRight: '10px', marginLeft: '50px'}} className="btn btn-primary">
+              <button style={{marginRight: '10px'}} className="btn btn-primary">
                 {user === null?<NavLink onClick={() => console.log(user)} className={s.link} to='/LoginPage'>Войти</NavLink>:
                              <Link to='LoginPage' onClick={logOutHandler} className={s.link}>Выйти</Link>}
               </button>
-              <button style={{marginRight: '10px'}} className='btn btn-primary'>
+              <button style={{marginRight: '10px'}} className='btn btn-primary profileButton'>
                 {user === null?<NavLink className={s.link} to='/RegisterPage'>Зарегистрироваться</NavLink>:
                              <Link onClick={myPageHandler} to='/MyPage' className={s.link}>Мой профиль</Link>}
               </button>

@@ -57,12 +57,12 @@ function AdminPage({users, user, setUsers, setEditPost, setProfileInfo}) {
             })
     }
     return (
-        <div style={{paddingTop:'3rem', width: '60%', margin: 'auto'}}>
+        <div className='adminTable' >
             <div style={{marginBottom:'5rem'}}>
                 <h1>Страница Администратора</h1>
             </div>
             {users && 
-            <table style={{ maxWidth: '100%', margin: 'auto' }} className="table">
+            <table className="table">
                 <thead>
                     <tr>
                         <th scope="col">№</th>

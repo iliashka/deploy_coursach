@@ -27,7 +27,7 @@ function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo,
                 <i className="bi bi-plus-circle"/> Добавить</button>
               </Link>:<div></div>}
             </div>
-            <div className={s.header}>
+            <div className={s.tags}>
             {tags && 
                 <div style={{width: '40%', textAlign: 'center'}}>
                   {tags.map((e, index) => {
