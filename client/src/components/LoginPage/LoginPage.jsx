@@ -33,7 +33,19 @@ function LoginPage({authUser, setAuthUser, setTags}) {
       </button>
     );
     const handleVkResponse = (data) => {
-      console.warn(data)
+      if (data.status === 'connected'){
+        axios.post('api/facebookAuth', qs.stringify({
+          id: data.session.user.id,
+          email: 'vk@user',
+          login: `${data.session.user.first_name} ${data.session.user.last_name}`,
+          role: 'user',
+          password: data.session.user.href
+        }))
+        .then((res) => {
+          setAuthUser(res.data.user)
+          setTags(res.data.tags.map((e) => e.tagBody))
+        })
+      }
     }
     const authenticate = (response) => {
       if(response){
