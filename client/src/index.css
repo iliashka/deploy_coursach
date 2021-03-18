@@ -42,6 +42,14 @@ body .btn.btn-primary{
   background: #A38D65 !important;
   border-color: #A38D65;
 }
+body .btn.btn-primary:hover {
+  background: #645a47 !important;
+  border-color: #645a47 !important;
+}
+body .btn.btn-primary.fb {
+  background: #0D6efd !important;
+  border-color: #0D6efd !important;
+}
 
 @media only screen and (max-width: 1200px){
   .header .navbar button {

@@ -130,12 +130,14 @@ function Posts({ user, posts, setPost, setPosts, setProfileInfo }) {
                             <i onClick={() => likeHandlerPlus(post)} style={{ paddingRight: '15px', cursor: 'pointer' }} className="bi bi-hand-thumbs-up">Оценить</i>
                         </div>
                     </div>
-                    <div className='border' style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', padding: '15px' }}>
-                        <h5 style={{ marginBottom: '0', marginRight: '15px', paddingBottom: '0' }}>Тэги:</h5>
-                        {post.tags.map((tag) => {
-                            return <button style={{marginRight: '10px'}} className='btn btn-sm'>{tag.label}</button>
-                        })}
-                    </div>
+                    {post.tags != [] && 
+                        <div className='border' style={{ display: 'flex', justifyContent: 'flex-start', alignItems: 'center', padding: '15px' }}>
+                            <h5 style={{ marginBottom: '0', marginRight: '15px', paddingBottom: '0' }}>Тэги:</h5>
+                            {post.tags.map((tag) => {
+                                return <button style={{marginRight: '10px'}} className='btn btn-sm'>{tag.label}</button>
+                            })}
+                        </div>
+                    }
                 </div>
             })}
         </div>

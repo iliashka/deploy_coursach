@@ -80,7 +80,23 @@ function NewPostPage({ user, tags, setTags }) {
 
                 </div>
             </div>
-            <button onClick={newPostHandler} className='btn btn-primary'><h5>Опубликовать</h5></button>
+            <button onClick={newPostHandler} data-bs-toggle="modal" data-bs-target="#exampleModal" className='btn btn-primary'><h5>Опубликовать</h5></button>
+            <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{user && user.login}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        <h6>Твоя "Прелесть" ждёт тебя на главной странице!</h6>
+                    </div>
+                    <div class="modal-footer">
+                    <button onClick={() => document.location.href = '/HomePage'} type="button" data-bs-dismiss="modal" class="btn btn-primary">Вернуться в Мордор</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
         </div>
     )
 }

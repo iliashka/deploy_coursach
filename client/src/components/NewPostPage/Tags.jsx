@@ -16,7 +16,7 @@ function Tags({tags, setTags, preTags, setPreTags}) {
         <div>
             <CreatableSelect
                 placeholder='Введите Ваши теги или выберите существующие'
-                options={tags.map((e) => {
+                options={tags && tags.map((e) => {
                     return e
                 })}
                 isClearable

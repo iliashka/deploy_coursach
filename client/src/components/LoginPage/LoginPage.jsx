@@ -4,6 +4,8 @@ import s from '../Header/Header.module.css';
 import axios from "axios";
 import qs from 'qs'
 import FaceBookAuth from 'react-facebook-auth'
+import VkAuth from "react-vk-auth";
+import Modal from '../Modal/Modal';
 
 function LoginPage({authUser, setAuthUser, setTags}) {
     const [preUser, setPreUser] = React.useState({
@@ -18,16 +20,21 @@ function LoginPage({authUser, setAuthUser, setTags}) {
           localStorage.setItem("user", JSON.stringify(res.data.data))
           setAuthUser(res.data.data)
           setTags(res.data.tags.map((e) => e.tagBody))
-          alert(res.data.data.login + ' ' + res.data.message)
+          return (
+            <Modal name={res.data.data.login} text={res.data.message}/>
+          )
         }, (error) => {
           console.log(error)
         })
     }
     const MyFacebookButton = ({ onClick }) => (
-      <button type='button' className='btn btn-primary' onClick={onClick}>
-        <i class="bi bi-facebook"></i> <Link to='/HomePage' className={s.link}>Login with facebook</Link>
+      <button type='button' className='btn btn-primary fb' onClick={onClick}>
+        <Link to='/HomePage' className={s.link}><i class="bi bi-facebook"></i></Link>
       </button>
     );
+    const handleVkResponse = (data) => {
+      console.warn(data)
+    }
     const authenticate = (response) => {
       if(response){
         axios.post('api/facebookAuth', qs.stringify({
@@ -59,17 +66,39 @@ function LoginPage({authUser, setAuthUser, setTags}) {
               <label>Введите пароль</label>
               <input onChange={(e) => setPreUser(preUser => ({...preUser, password: e.target.value}))} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"></input>
             </div>
-            <button onClick={loginHandler} type='button' className="btn btn-primary" style={{marginRight: '10px'}}><Link style={{textDecoration: 'none', color: 'white'}} to='/HomePage'>Войти</Link></button>
+
+            <button onClick={loginHandler} data-bs-toggle="modal" data-bs-target="#exampleModal" type='button' className="btn btn-primary" style={{marginRight: '10px'}}>Войти</button>
+              <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                <div class="modal-dialog">
+                    <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="exampleModalLabel">{authUser && authUser.login}</h5>
+                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+                        Вы вошли в систему!
+                    </div>
+                    <div class="modal-footer">
+                    <button onClick={() => document.location.href = '/HomePage'} type="button" data-bs-dismiss="modal" class="btn btn-primary">Познать Истнину</button>
+                    </div>
+                    </div>
+                </div>
+            </div>
             <button style={{marginRight: '10px'}} className='btn btn-primary'>
               <NavLink className={s.link} to='/RegisterPage'>Зарегистрироваться</NavLink>
             </button>
           </form>
-          <div className='mt-4'>
+          <div className='mt-4 df'>
             <FaceBookAuth
             appId="148194100501720"
             callback={authenticate}
             component={MyFacebookButton}
             />
+            <VkAuth
+            className='btn btn-primary fb ml-2'
+            apiId='7795032'
+            callback={handleVkResponse}
+            >VK</VkAuth>
           </div>
           <div className='mt-4'>
             <Link to='/Privacy'>Политика конфиденциальности</Link>
