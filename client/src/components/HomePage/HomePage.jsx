@@ -3,7 +3,6 @@ import s from './HomePage.module.css'
 import Posts from './Posts/Posts'
 import { Link } from "react-router-dom";
 import axios from 'axios'
-import Carousel from '../TopCarousel/Carousel';
 
 function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo, tags, setTags }) {
     const [bestPosts, setBestPosts] = React.useState()
@@ -32,7 +31,6 @@ function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo,
                 <i className="bi bi-plus-circle"/> Добавить</button>
               </Link>:<div></div>}
             </div>
-            <Carousel posts={bestPosts}/>
             <div className={s.tags}>
             {tags && 
                 <div style={{width: '40%', textAlign: 'center'}}>
@@ -41,6 +39,14 @@ function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo,
                   })}
                 </div>
                 }
+            </div>
+            <div className="w-100 d-flex justify-content-between">
+              <select name="" id="" className="select">
+          
+              </select>
+              <select name="" id="" className="select">
+
+              </select>
             </div>
             <Posts user={user} posts={posts} setPost={setPost} setPosts={setPosts} setProfileInfo={setProfileInfo}/>
         </div>
