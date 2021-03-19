@@ -11,10 +11,11 @@
 .logo {
     color: black;
     font-size: 2rem;
-    width: 120px;
+    width: 60px;
     height: 60px;
-    background: transparent;
-    background-image: url('./../../logo2.png');
+    background-color: transparent;
+    background-size: contain;
+    background-image: url('./../../logo3.png');
 }
 
 .logo:hover {

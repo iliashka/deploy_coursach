@@ -34,3 +34,15 @@ exports.ratePost = async (req, res, next) => {
         next(error)
     }
 }
+
+exports.bestPosts = async (req, res, next) => {
+    try {
+        const bestPosts = await Post.find({rating: 5}).limit(3)
+        res.status(200).json({
+            bestPosts
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+

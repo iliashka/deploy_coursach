@@ -5,7 +5,6 @@ import axios from "axios";
 import qs from 'qs'
 import FaceBookAuth from 'react-facebook-auth'
 import VkAuth from "react-vk-auth";
-import Modal from '../Modal/Modal';
 
 function LoginPage({authUser, setAuthUser, setTags}) {
     const [preUser, setPreUser] = React.useState({
@@ -20,9 +19,6 @@ function LoginPage({authUser, setAuthUser, setTags}) {
           localStorage.setItem("user", JSON.stringify(res.data.data))
           setAuthUser(res.data.data)
           setTags(res.data.tags.map((e) => e.tagBody))
-          return (
-            <Modal name={res.data.data.login} text={res.data.message}/>
-          )
         }, (error) => {
           console.log(error)
         })
@@ -78,14 +74,12 @@ function LoginPage({authUser, setAuthUser, setTags}) {
               <label>Введите пароль</label>
               <input onChange={(e) => setPreUser(preUser => ({...preUser, password: e.target.value}))} type="password" className="form-control" id="exampleInputPassword1" placeholder="Password"></input>
             </div>
-
             <button onClick={loginHandler} data-bs-toggle="modal" data-bs-target="#exampleModal" type='button' className="btn btn-primary" style={{marginRight: '10px'}}>Войти</button>
               <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">
                     <div class="modal-header">
                         <h5 class="modal-title" id="exampleModalLabel">{authUser && authUser.login}</h5>
-                        <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
                         Вы вошли в систему!

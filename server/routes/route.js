@@ -52,5 +52,7 @@ router.get('/tags', tagsController.tags)
 
 router.post('/search', postsController.search)
 
+router.get('/bestPosts', ratingController.bestPosts)
+
 
 module.exports = router;

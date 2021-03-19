@@ -3,9 +3,10 @@ import s from './HomePage.module.css'
 import Posts from './Posts/Posts'
 import { Link } from "react-router-dom";
 import axios from 'axios'
+import Carousel from '../TopCarousel/Carousel';
 
 function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo, tags, setTags }) {
-    
+    const [bestPosts, setBestPosts] = React.useState()
 
     window.onload = function() {
         const auth = JSON.parse(localStorage.getItem("user"));
@@ -18,6 +19,10 @@ function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo,
         .then((res) => {
           setTags(res.data.tags.map(e => e.tagBody))
         })
+        axios.get('api/bestPosts')
+        .then((res) => {
+          setBestPosts(res.data.bestPosts)
+        })
     }
     return (
         <div className={s.wrapper}> 
@@ -27,6 +32,7 @@ function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo,
                 <i className="bi bi-plus-circle"/> Добавить</button>
               </Link>:<div></div>}
             </div>
+            <Carousel posts={bestPosts}/>
             <div className={s.tags}>
             {tags && 
                 <div style={{width: '40%', textAlign: 'center'}}>

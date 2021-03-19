@@ -43,17 +43,18 @@ exports.takePosts = async (req, res, next) => {
 exports.newPost = async (req, res, next) => {
     try {
         const { login, post, postName, genre, summary, tags } = req.body;
-        const newPost = await new Post({ login, post, postName, genre, likesCount: 0, summary, tags: tags });
+        console.log(tags)
+        const newPost = await new Post({ login, post, postName, genre, likesCount: 0, summary, tags});
         await newPost.save();        
-        await tags.map((e, index) => {
-            const question = Tags.findOne({tagBody: e});
-            if (!question) {
-                const tag = new Tags({tagBody: e})
-                tag.save()
-            }else{
-                return;
-            }
-        });
+            await tags.map(async (e, index) => {
+                const question = await Tags.findOne({tagBody: e});
+                if (!question) {
+                    const tag = new Tags({tagBody: e})
+                    tag.save()
+                }else{
+                    return;
+                }
+            });
         req.post = newPost;
         next()
     } catch (error) {

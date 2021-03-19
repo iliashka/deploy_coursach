@@ -57,12 +57,12 @@ function AdminPage({users, user, setUsers, setEditPost, setProfileInfo}) {
             })
     }
     return (
-        <div className='adminTable' >
+        <div className='col-xl-8 offset-xl-2 mt-4 adminTable' >
             <div style={{marginBottom:'5rem'}}>
                 <h1>Страница Администратора</h1>
             </div>
             {users && 
-            <table className="table">
+            <table className="col-md-auto  table">
                 <thead>
                     <tr>
                         <th scope="col">№</th>

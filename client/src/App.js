@@ -11,6 +11,7 @@ import PostPage from './components/HomePage/Posts/PostPage';
 import EditPost from './components/HomePage/Posts/EditPost';
 import AdminPage from './components/AdminPage/AdminPage';
 import Privacy from './components/AdminPage/Privacy';
+import Footer from './components/Footer/Footer';
 
 function App() {
   const [authUser, setAuthUser] = React.useState({
@@ -29,7 +30,7 @@ function App() {
   const [profileInfo, setProfileInfo] = React.useState()
 
   return (
-    <div className="App">
+    <div className="App" style={{height: '100%'}}>
       <Header setUsers={setUsers} setPost={setPost} setMyPageInfo={setMyPageInfo} setUser={setAuthUser} user={authUser} />
       <Route path='/NewPostPage' render={() => <NewPostPage 
                                                   setTags={setTags} 
@@ -72,6 +73,7 @@ function App() {
                                                   user={authUser} 
                                                   users={users} />} />
       <Route path='/Privacy' render={() =>      <Privacy/>}/>
+      <Footer/>
     </div>
   );
 }

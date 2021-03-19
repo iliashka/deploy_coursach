@@ -36,8 +36,8 @@ function MyPage({ user, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost
     }
 
     return (
-        <div>
-            <div style={{ paddingTop: '30px', paddingBottom: '70px', maxWidth: '60%', margin: 'auto', display: 'flex', justifyContent: 'space-between' }}>{myPageInfo &&
+        <div className='col-md-auto'>
+            <div className='profile_wrapper' style={{ paddingTop: '30px', paddingBottom: '70px', maxWidth: '60%', margin: 'auto', display: 'flex', justifyContent: 'space-between' }}>{myPageInfo &&
                 <h1>Страница пользователя: {myPageInfo.user.login}</h1>
             }
                 {user && !user.avatar?<FileLoader setUser={setUser} user={user} />:<img alt='avatar' style={{width: '100px', height: '100px'}} src={user && user.avatar}/>}
