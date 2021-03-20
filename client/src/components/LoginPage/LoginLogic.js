@@ -23,6 +23,7 @@ const handleVkResponse = (data, setAuthUser, setTags) => {
         password: data.session.user.href
       }))
       .then((res) => {
+        localStorage.setItem("user", JSON.stringify(res.data.user))
         setAuthUser(res.data.user)
         setTags(res.data.tags.map((e) => e.tagBody))
       })
