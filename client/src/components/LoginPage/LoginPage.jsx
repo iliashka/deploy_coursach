@@ -56,11 +56,11 @@ function LoginPage({authUser, setAuthUser, setTags}) {
             callback={(response) => LoginLogic.authenticate(response, setTags, setAuthUser)}
             component={MyFacebookButton}
             />
-            <Link to='/HomePage' className={s.link}><VkAuth
+            <VkAuth
             className='btn btn-primary fb ml-2'
             apiId='7795032'
             callback={(data) => LoginLogic.handleVkResponse(data, setTags, setAuthUser)}
-            >VK</VkAuth></Link>
+            >VK</VkAuth>
           </div>
           <div className='mt-4'>
             <Link to='/Privacy'>Политика конфиденциальности</Link>
