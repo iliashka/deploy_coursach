@@ -26,6 +26,7 @@ const handleVkResponse = (data, setAuthUser, setTags) => {
         localStorage.setItem("user", JSON.stringify(res.data.user))
         setAuthUser(res.data.user)
         setTags(res.data.tags.map((e) => e.tagBody))
+        document.location.href = '/HomePage'
       })
     }
 }  
@@ -43,6 +44,7 @@ const authenticate = (response, setAuthUser, setTags) => {
       .then((res) => {
         setAuthUser(res.data.user)
         setTags(res.data.tags.map((e) => e.tagBody))
+        document.location.href = '/HomePage'
       })
     }else{
       return;
