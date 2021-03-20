@@ -13,6 +13,8 @@ import AdminPage from './components/AdminPage/AdminPage';
 import Privacy from './components/AdminPage/Privacy';
 import Footer from './components/Footer/Footer';
 
+
+
 function App() {
   const [authUser, setAuthUser] = React.useState({
     id: '',

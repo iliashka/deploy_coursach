@@ -85,7 +85,7 @@ function LoginPage({authUser, setAuthUser, setTags}) {
                         Вы вошли в систему!
                     </div>
                     <div class="modal-footer">
-                    <button onClick={() => document.location.href = '/HomePage'} type="button" data-bs-dismiss="modal" class="btn btn-primary">Познать Истнину</button>
+                    <button onClick={() => document.location.href = '/HomePage'} type="button" data-bs-dismiss="modal" class="btn btn-primary">Познать Истину</button>
                     </div>
                     </div>
                 </div>

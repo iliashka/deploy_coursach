@@ -242,7 +242,9 @@ body .btn.btn-primary.fb {
     background: #0E76A8 !important;
     border-color: #0E76A8 !important;
   }
-body .carousel-inner {
-  background-color: #79616052;
-  border-radius: 20px;
+body .table {
+  margin-bottom: 15% !important;
+}
+body .dropdown-item {
+  cursor: pointer !important;
 }

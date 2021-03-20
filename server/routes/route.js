@@ -52,6 +52,8 @@ router.get('/tags', tagsController.tags)
 
 router.post('/search', postsController.search)
 
+router.post('/searchByGenre', postsController.searchByGenre)
+
 router.get('/bestPosts', ratingController.bestPosts)
 
 

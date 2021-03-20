@@ -3,25 +3,23 @@ import s from './HomePage.module.css'
 import Posts from './Posts/Posts'
 import { Link } from "react-router-dom";
 import axios from 'axios'
-
-function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo, tags, setTags }) {
+import QueryString from 'qs';
+import logic from './HomePageLogic'
+ 
+function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo, tags = [], setTags }) {
     const [bestPosts, setBestPosts] = React.useState()
-
+    const [genre, setGenre] = React.useState()
+    React.useEffect(() => {
+      logic.searchByGenre(genre, setPosts)
+    }, [genre, setPosts])
+    // window.onload = () => logic.onloadHomePage(setTags, setAuthUser, setTags, setBestPosts)
+    
     window.onload = function() {
         const auth = JSON.parse(localStorage.getItem("user"));
-        axios.get('api/posts')
-        .then((res) => {
-        setPosts(res.data.posts)
-        })
+        logic.takeAllPosts(setPosts)
         setAuthUser(auth)
-        axios.get('api/tags')
-        .then((res) => {
-          setTags(res.data.tags.map(e => e.tagBody))
-        })
-        axios.get('api/bestPosts')
-        .then((res) => {
-          setBestPosts(res.data.bestPosts)
-        })
+        logic.getTags(setTags)
+        logic.getBestPosts(setBestPosts)
     }
     return (
         <div className={s.wrapper}> 
@@ -40,13 +38,28 @@ function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo,
                 </div>
                 }
             </div>
-            <div className="w-100 d-flex justify-content-between">
-              <select name="" id="" className="select">
-          
-              </select>
-              <select name="" id="" className="select">
-
-              </select>
+            <div className="w-100 d-flex justify-content-between mb-4">
+              <div className='dropdown'>
+                <button className="btn btn-bd-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
+                  Фильтровать по жанру
+                </button>
+                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
+                  <li><a onClick={() => logic.takeAllPosts(setPosts)} class="dropdown-item">Все</a></li>
+                  <li><a onClick={() => setGenre('Эротика')} class="dropdown-item">Эротика</a></li>
+                  <li><a onClick={() => setGenre('Фантастика')} class="dropdown-item">Фантастика</a></li>
+                  <li><a onClick={() => setGenre('Роман')} class="dropdown-item">Роман</a></li>
+                </ul>
+              </div>
+              <div className='dropdown'>
+                <button className="btn btn-bd-light dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
+                  Фильтровать по жанру
+                </button>
+                <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton2">
+                  <li><a class="dropdown-item" href="#">Action</a></li>
+                  <li><a class="dropdown-item" href="#">Another action</a></li>
+                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                </ul>
+              </div>
             </div>
             <Posts user={user} posts={posts} setPost={setPost} setPosts={setPosts} setProfileInfo={setProfileInfo}/>
         </div>

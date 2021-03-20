@@ -11,6 +11,7 @@ const esClient = elasticsearch.Client({
     host: "http://127.0.0.1:9200",
 })
 
+
 exports.createIndex = async (req, res, next) => {
     try {
         let str = `${req.post.post} ${req.post.summary} ${req.post.postName}`
@@ -183,6 +184,18 @@ exports.editPost = async (req, res, next) => {
         await Post.findByIdAndUpdate(id, {genre: genre, summary: summary, postName: postName, post: post}, {new: true})
         await res.status(200).json({
             message: 'Пост Изменён'
+        })
+    } catch (error) {
+        next(error)
+    }
+}
+
+exports.searchByGenre = async (req, res, next) => {
+    try {
+        const { genre } = req.body;
+        const posts = await Post.find({genre: genre})
+        res.status(200).json({
+            posts
         })
     } catch (error) {
         next(error)
