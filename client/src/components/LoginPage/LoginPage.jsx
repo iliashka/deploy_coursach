@@ -13,7 +13,7 @@ function LoginPage({authUser, setAuthUser, setTags}) {
 
     const MyFacebookButton = ({ onClick }) => (
       <button type='button' className='btn btn-primary fb' onClick={onClick}>
-        <Link to='/HomePage' className={s.link}><i class="bi bi-facebook"></i></Link>
+        <i class="bi bi-facebook"></i>
       </button>
     );
     
