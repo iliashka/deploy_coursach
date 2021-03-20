@@ -32,7 +32,7 @@ function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo,
             <div className={s.tags}>
             {tags && 
                 <div style={{width: '40%', textAlign: 'center'}}>
-                  {tags?.map((e, index) => {
+                  {tags && tags.map((e, index) => {
                     return <button key={index} style={{marginRight: '10px', marginBottom: '10px'}} className='btn btn-sm'>{e.label}</button>
                   })}
                 </div>
