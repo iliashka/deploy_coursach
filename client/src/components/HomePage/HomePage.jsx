@@ -6,7 +6,7 @@ import axios from 'axios'
 import QueryString from 'qs';
 import logic from './HomePageLogic'
  
-function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo, tags = [], setTags }) {
+function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo, tags = [1], setTags }) {
     const [bestPosts, setBestPosts] = React.useState()
     const [genre, setGenre] = React.useState()
     React.useEffect(() => {
@@ -32,7 +32,7 @@ function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo,
             <div className={s.tags}>
             {tags && 
                 <div style={{width: '40%', textAlign: 'center'}}>
-                  {tags.map((e, index) => {
+                  {tags?.map((e, index) => {
                     return <button key={index} style={{marginRight: '10px', marginBottom: '10px'}} className='btn btn-sm'>{e.label}</button>
                   })}
                 </div>
