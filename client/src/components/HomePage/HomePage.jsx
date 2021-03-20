@@ -44,10 +44,10 @@ function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo,
                   Фильтровать по жанру
                 </button>
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li><a onClick={() => logic.takeAllPosts(setPosts)} class="dropdown-item">Все</a></li>
-                  <li><a onClick={() => setGenre('Эротика')} class="dropdown-item">Эротика</a></li>
-                  <li><a onClick={() => setGenre('Фантастика')} class="dropdown-item">Фантастика</a></li>
-                  <li><a onClick={() => setGenre('Роман')} class="dropdown-item">Роман</a></li>
+                  <li onClick={() => logic.takeAllPosts(setPosts)} class="dropdown-item">Все</li>
+                  <li onClick={() => setGenre('Эротика')} class="dropdown-item">Эротика</li>
+                  <li onClick={() => setGenre('Фантастика')} class="dropdown-item">Фантастика</li>
+                  <li onClick={() => setGenre('Роман')} class="dropdown-item">Роман</li>
                 </ul>
               </div>
               <div className='dropdown'>

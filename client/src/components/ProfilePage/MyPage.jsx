@@ -1,40 +1,12 @@
-import axios from 'axios'
-import qs from 'qs'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import FileLoader from '../FileLoader/FileLoader'
 import ReactStars from 'react-rating-stars-component'
+import AdminLogic from '../AdminPage/AdminPageLogic'
+import ProfileLogic from './ProfileLogic'
+import PostsLogic from '../HomePage/Posts/PostsLogic'
 
 function MyPage({ user, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost }) {
-
-    const searchByGenre = (e) => {
-        axios.post('api/getPostsByGenre', qs.stringify({ genre: e.target.value, id: user.id }))
-            .then((res) => {
-                setMyPageInfo(res.data)
-            })
-    }
-
-    function deletePostHandler(post) {
-        axios.put('api/deletePost', qs.stringify({ postId: post._id, userId: user.id }))
-            .then((res) => {
-                setMyPageInfo(res.data)
-            })
-    }
-
-    function readPostHandler(post) {
-        axios.post('api/post', qs.stringify({ postId: post._id }))
-            .then((res) => {
-                setPost(res.data.post)
-            })
-    }
-
-    function editPostHandler(post) {
-        axios.post('api/post', qs.stringify({ postId: post._id }))
-            .then((res) => {
-                setEditPost(res.data.post)
-            })
-    }
-
     return (
         <div className='col-md-auto'>
             <div className='profile_wrapper' style={{ paddingTop: '30px', paddingBottom: '70px', maxWidth: '60%', margin: 'auto', display: 'flex', justifyContent: 'space-between' }}>{myPageInfo &&
@@ -43,7 +15,7 @@ function MyPage({ user, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost
                 {user && !user.avatar?<FileLoader setUser={setUser} user={user} />:<img alt='avatar' style={{width: '100px', height: '100px'}} src={user && user.avatar}/>}
             </div>
             <div style={{ paddingBottom: '70px', maxWidth: '60%', margin: 'auto' }} className='form-select'>
-                <select onChange={searchByGenre}>
+                <select onChange={(e) => ProfileLogic.searchByGenre(e, user, setMyPageInfo)}>
                     <option value="Эротика">Эротика</option>
                     <option value="Фантастика">Фантастика</option>
                     <option value="Роман">Роман</option>
@@ -79,14 +51,14 @@ function MyPage({ user, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost
                                             Действия
                                         </button>
                                         <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                            <li><button onClick = {() => deletePostHandler(post)} style = {{ marginRight: '10px' }} className = 'btn btn-danger' type = 'button' >
+                                            <li><button onClick = {() => ProfileLogic.deletePostHandler(post, user, setMyPageInfo)} style = {{ marginRight: '10px' }} className = 'btn btn-danger' type = 'button' >
                                                 Удалить
                                             </button ></li>
                                             <li><button style={{marginRight: '10px'}} className='btn btn-warning' type='button'>
-                                                <Link onClick={() => editPostHandler(post)} to='/EditPage' style={{color: 'white', textDecoration: 'none'}}>Редактировать</Link>
+                                                <Link onClick={() => AdminLogic.openEditPage(post._id, setEditPost)} to='/EditPage' style={{color: 'white', textDecoration: 'none'}}>Редактировать</Link>
                                             </button></li>
                                             <li><button className='btn btn-primary' type='button'>
-                                                <Link onClick={() => readPostHandler(post)} to='/PostPage' style={{color: 'white', textDecoration: 'none'}}>Читать</Link>
+                                                <Link onClick={() => PostsLogic.readPostHandler(post, setPost)} to='/PostPage' style={{color: 'white', textDecoration: 'none'}}>Читать</Link>
                                             </button></li>
                                         </ul>
                                     </div>

@@ -1,10 +1,9 @@
-import axios from 'axios'
-import qs from 'qs'
 import React from 'react'
 import Tags from './Tags';
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
+import NewPostLogic from './NewPostLogic'
 
 function NewPostPage({ user, tags, setTags }) {
     const [preTags, setPreTags] = React.useState()
@@ -18,23 +17,8 @@ function NewPostPage({ user, tags, setTags }) {
         summary: '',
     })
 
-    const newPostHandler = () => {
-        axios.post('api/newPost', qs.stringify({
-            tags: preTags[0],
-            post: value,
-            postName: newPost.postName,
-            genre: newPost.genre,
-            summary: newPost.summary,
-            login: user.login
-        }))
-            .then((res) => {
-                console.log(res.data.data);
-            })
-    }
-
-
     return (
-        <div className="card border-secondary mb-3" style={{ maxWidth: '60%', margin: 'auto', marginTop: '5rem' }}>
+        <div className="card border-secondary mb-3 newPostCard" style={{ maxWidth: '60%', margin: 'auto', marginTop: '5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }} className="card-header">
                 <h3 className='card-text'>Автор: {user.login}</h3>
                 <div style={{ display: 'flex' }} >
@@ -78,7 +62,7 @@ function NewPostPage({ user, tags, setTags }) {
 
                 </div>
             </div>
-            <button onClick={newPostHandler} data-bs-toggle="modal" data-bs-target="#exampleModal" className='btn btn-primary'><h5>Опубликовать</h5></button>
+            <button onClick={() => NewPostLogic.newPostHandler(preTags, value, newPost, user)} data-bs-toggle="modal" data-bs-target="#exampleModal" className='btn btn-primary'><h5>Опубликовать</h5></button>
             <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
                 <div class="modal-dialog">
                     <div class="modal-content">

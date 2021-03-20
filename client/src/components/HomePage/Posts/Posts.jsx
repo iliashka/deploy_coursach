@@ -1,9 +1,9 @@
 import React from 'react'
-import axios from 'axios'
-import qs from 'qs'
 import { Link } from 'react-router-dom'
 import ReactStars from 'react-rating-stars-component'
 import ReactMarkdown from "react-markdown";
+import logic from '../HomePageLogic'
+import PostsLogic from './PostsLogic'
 
 
 
@@ -13,77 +13,21 @@ function Posts({ user, posts, setPost, setPosts, setProfileInfo }) {
 
     const updateCount = () => {
         setCount(count + 1)
-        console.log(count)
     }
 
     React.useEffect(() => {
-        console.log(count)
-        axios.get('api/posts')
-        .then((res) => {
-            setPosts(res.data.posts)
-        })
+        logic.takeAllPosts(setPosts)
     }, [count, setPosts])
-
-
-    function openProfilePage(post) {
-        axios.post('api/takeUserProfileInfo', qs.stringify({ login: post.login }))
-            .then((res) => {
-                setProfileInfo(res.data.data)
-            })
-    }
-
-    function likeHandlerPlus(post) {
-        if (user === null) {
-            alert('Чтобы оценить произведение, сначала войдите в систему!')
-        } else {
-            axios.put('api/plusLike', qs.stringify({ postId: post._id, userId: user.id }))
-                .then((res) => {
-                    console.log(res.data)
-                    setPosts(res.data.posts)
-                })
-        }
-    }
-
-    function ratingChange(post, newRating) {
-        if (user === null) {
-            alert('Чтобы поставить рейтинг, сначала войдите в систему!')
-        } else {
-            axios.put('api/ratePost', qs.stringify({ postId: post._id, userId: user.id, rating: newRating }))
-                .then((res) => {
-                    alert(res.data.message)
-                    setPosts(res.data.posts)
-                })
-        }
-    }
-
-    function readPostHandler(post) {
-        console.log(post)
-        axios.post('api/post', qs.stringify({ postId: post._id }))
-            .then((res) => {
-                setPost(res.data.post)
-            })
-    }
-
-    function sendCommentHandler(post) {
-        if(user === null){
-            alert('Чтобы добавить комментарий, сначала войдите в систему.')
-        }else{
-            axios.put('api/addComment', qs.stringify({postId: post._id, userLogin: user.login, comment: commentBody}))
-            .then((res) => {
-            setPosts(res.data.posts)
-        })
-        }
-    }
 
     return (
         <div className='wrapper'>
             {posts && posts.map((post, index) => {
                 return <div className="card border-secondary mb-3" >
                     <div style={{ display: 'flex', justifyContent: 'space-between' }} className="card-header">
-                        <h3 style={{ marginLeft: '1rem' }}>Автор: <Link to="/ProfilePage" onClick={() => openProfilePage(post)}>{post.login}</Link></h3>
+                        <h3 style={{ marginLeft: '1rem' }}>Автор: <Link to="/ProfilePage" onClick={() => PostsLogic.openProfilePage(post, setProfileInfo)}>{post.login}</Link></h3>
                         <h3 style={{ marginRight: '1rem' }}>Жанр: {post.genre}</h3>
                         <button className='btn btn-primary' type='button'>
-                            <Link onClick={() => readPostHandler(post)} to='/PostPage' style={{ color: 'white', textDecoration: 'none' }}>Читать</Link>
+                            <Link onClick={() => PostsLogic.readPostHandler(post, setPost)} to='/PostPage' style={{ color: 'white', textDecoration: 'none' }}>Читать</Link>
                         </button>
                     </div>
                     <div className="card-body text-dark border-secondary">
@@ -109,7 +53,7 @@ function Posts({ user, posts, setPost, setPosts, setProfileInfo }) {
                                 <li>
                                     <div style={{display:'flex'}}>
                                         <input onChange={(e) => setCommentBody(e.target.value)} type="text" placeholder='Добавить комментарий'/>
-                                        <button onClick={() => sendCommentHandler(post)} style={{marginLeft: '15px'}} type='button' className='btn btn-primary'>Отправить</button>
+                                        <button onClick={() => PostsLogic.sendCommentHandler(post, user, setPosts, commentBody)} style={{marginLeft: '15px'}} type='button' className='btn btn-primary'>Отправить</button>
                                     </div>
                                 </li>
                             </ul>
@@ -120,14 +64,14 @@ function Posts({ user, posts, setPost, setPosts, setProfileInfo }) {
                                 count={5}
                                 value={post.rating}
                                 edit={false}
-                                onChange={(newRating) => ratingChange(post, newRating)}
+                                onChange={(newRating) => PostsLogic.ratingChange(post, setPosts, newRating, user)}
                                 size={24}
                                 activeColor="#ffd700"
                             />
                         </div>
                         <div style={{display: 'flex'}}>
                             <h5 style={{ marginLeft: '20px', marginBottom: '0', marginRight: '15px' }}>Лайков: {post.likesCount}</h5>
-                            <i onClick={() => likeHandlerPlus(post)} style={{ paddingRight: '15px', cursor: 'pointer' }} className="bi bi-hand-thumbs-up">Оценить</i>
+                            <i onClick={() => PostsLogic.likeHandlerPlus(post, user, setPosts)} style={{ paddingRight: '15px', cursor: 'pointer' }} className="bi bi-hand-thumbs-up">Оценить</i>
                         </div>
                     </div>
                     {post.tags !== [] && 

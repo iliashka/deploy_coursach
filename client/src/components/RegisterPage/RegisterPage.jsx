@@ -1,8 +1,7 @@
 import React from 'react'
 import { NavLink } from 'react-router-dom'
 import s from '../Header/Header.module.css';
-import axios from "axios";
-import qs from 'qs'
+import RegisterLogic from './RegisterLogic'
 
 function RegisterPage() {
     const [user, setUser] = React.useState({
@@ -12,27 +11,11 @@ function RegisterPage() {
         role: 'user'
     })
 
-    const registerHandler = (e) => {
-      e.preventDefault()
-        axios.post('api/singup', qs.stringify(user))
-        .then((res) => {
-            setUser(0)
-            alert(user.login + ', ' + res.data.message)
-            if (res.status === 200){
-              window.location.href = '/LoginPage'
-            }
-        }, (error) => {
-            console.log(error)
-        })
-    }
-
-  
-
     return (
         <div style={{marginTop: '4em'}} className="col-md-6 offset-md-3">
             <h1>Регистрация</h1>
             <br/>
-          <form onSubmit={registerHandler}>
+          <form onSubmit={(e) => RegisterLogic.registerHandler(e, user, setUser)}>
             <div className="form-group">
               <label>Email address</label>
               <input onChange={(e) => setUser(user => ({...user, email: e.target.value}))} type="email" id="validationDefaultEmail" className="form-control"  aria-describedby="emailHelp" placeholder="Email"></input>

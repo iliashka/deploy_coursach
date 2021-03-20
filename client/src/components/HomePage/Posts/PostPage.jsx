@@ -1,34 +1,9 @@
 import React from 'react'
-import axios from 'axios'
-import qs from 'qs'
 import ReactStars from 'react-rating-stars-component'
 import ReactMarkdown from "react-markdown";
+import PostsLogic from './PostsLogic'
 
 function PostPage({ user, post, setPosts }) {
-
-    function ratingChange(post, newRating) {
-        if(user === null) {
-            alert('Чтобы поставить рейтинг, сначала войдите в систему!')
-        }else{
-            axios.put('api/ratePost', qs.stringify({postId: post._id, userId: user.id, rating: newRating}))
-            .then((res) => {
-            alert(res.data.message)
-            setPosts(res.data.posts)
-        })  
-        }  
-    }
-
-    function likeHandlerPlus(post) {
-        if (user === null) {
-            alert('Чтобы оценить произведение, сначала войдите в систему!')
-        } else {
-            axios.put('api/plusLike', qs.stringify({ postId: post._id, userId: user.id }))
-                .then((res) => {
-                    console.log(res.data)
-                    setPosts(res.data.posts)
-                })
-        }
-    }
     return (
         <div>
             <div className="card border-secondary mb-3" style={{ maxWidth: '80%', margin: 'auto', marginTop: '3rem' }}>
@@ -46,12 +21,12 @@ function PostPage({ user, post, setPosts }) {
                             <h5 style={{marginBottom: '0px', marginRight: '15px'}}>Оценить произведение</h5>
                             <ReactStars
                                 count={5}
-                                onChange={(newRating) => ratingChange(post, newRating)}
+                                onChange={(newRating) => PostsLogic.ratingChange(post, newRating, user, setPosts)}
                                 size={24}
                                 activeColor="#ffd700"
                             />
                         </div>
-                        <i onClick={() => likeHandlerPlus(post)} style={{marginLeft:'rem', paddingRight: '15px', cursor: 'pointer' }} className="bi bi-hand-thumbs-up">Поставить лайк</i>
+                        <i onClick={() => PostsLogic.likeHandlerPlus(post, user, setPosts)} style={{marginLeft:'rem', paddingRight: '15px', cursor: 'pointer' }} className="bi bi-hand-thumbs-up">Поставить лайк</i>
                     </div>
             </div>
         </div>

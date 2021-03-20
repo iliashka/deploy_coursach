@@ -72,7 +72,7 @@ function App() {
                                                   setProfileInfo={setProfileInfo} 
                                                   setEditPost={setEditPost} 
                                                   setUsers={setUsers} 
-                                                  user={authUser} 
+                                                  authUser={authUser} 
                                                   users={users} />} />
       <Route path='/Privacy' render={() =>      <Privacy/>}/>
       <Footer/>

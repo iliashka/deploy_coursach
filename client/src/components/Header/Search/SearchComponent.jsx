@@ -1,21 +1,12 @@
 import React from 'react'
 import PostsList from './PostsList';
-import axios from 'axios';
-import QueryString from 'qs';
+import HeaderLogic from '../HeaderLogic'
 
 function SearchComponent({setPost}) {
     const [input, setInput] = React.useState('');
     const [postsList, setPostsList] = React.useState();
 
-    const postData = () => {
-        axios.post('api/search', QueryString.stringify({text: input}))
-        .then((res) => {
-            setPostsList(res.data);
-        })
-        // console.log(postsList)
-    }
-
-    React.useEffect(() => {postData()}, [input]);
+    React.useEffect(() => {HeaderLogic.postData(input, setPostsList)}, [input]);
     return (
         <div>
             <input

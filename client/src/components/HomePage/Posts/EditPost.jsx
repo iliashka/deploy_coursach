@@ -1,9 +1,8 @@
-import axios from 'axios'
-import qs from 'qs'
 import React from 'react'
 import ReactMarkdown from "react-markdown";
 import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
+import PostsLogic from './PostsLogic';
 
 function EditPost({ editPost }) {
     const [selectedTab, setSelectedTab] = React.useState("write");
@@ -15,17 +14,6 @@ function EditPost({ editPost }) {
         id: editPost && editPost._id,
         post: editPost && editPost.post
     })
-
-    const editPostHandler = () => {
-        axios.put('api/editPost', qs.stringify({ genre: preEditPost.genre,
-                                            id: editPost._id, 
-                                            summary: preEditPost.summary, 
-                                            postName: preEditPost.postName, 
-                                            post: value }))
-        .then((res)=> {
-            alert(res.data.message)
-        })
-    }
 
     return (
         <div>
@@ -75,7 +63,7 @@ function EditPost({ editPost }) {
                                   />
                     </div>
                 </div>
-                <button onClick={editPostHandler} className='btn btn-primary'><h5 style={{marginBottom: '0'}}>Внести Изменения</h5></button>
+                <button onClick={() => PostsLogic.editPostHandler(value, preEditPost, editPost)} className='btn btn-primary'><h5 style={{marginBottom: '0'}}>Внести Изменения</h5></button>
             </div>
         </div>
     )

@@ -248,3 +248,6 @@ body .table {
 body .dropdown-item {
   cursor: pointer !important;
 }
+body .newPostCard {
+  margin-bottom: 15% !important;
+}
