@@ -2,17 +2,14 @@ import React from 'react'
 import s from './HomePage.module.css'
 import Posts from './Posts/Posts'
 import { Link } from "react-router-dom";
-import axios from 'axios'
-import QueryString from 'qs';
 import logic from './HomePageLogic'
  
-function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo, tags = [1], setTags }) {
+function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo, tags, setTags }) {
     const [bestPosts, setBestPosts] = React.useState()
     const [genre, setGenre] = React.useState()
     React.useEffect(() => {
       logic.searchByGenre(genre, setPosts)
     }, [genre, setPosts])
-    // window.onload = () => logic.onloadHomePage(setTags, setAuthUser, setTags, setBestPosts)
     
     window.onload = function() {
         const auth = JSON.parse(localStorage.getItem("user"));
@@ -30,13 +27,11 @@ function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo,
               </Link>:<div></div>}
             </div>
             <div className={s.tags}>
-            {tags && 
                 <div style={{width: '40%', textAlign: 'center'}}>
                   {tags && tags.map((e, index) => {
                     return <button key={index} style={{marginRight: '10px', marginBottom: '10px'}} className='btn btn-sm'>{e.label}</button>
                   })}
                 </div>
-                }
             </div>
             <div className="w-100 d-flex justify-content-between mb-4">
               <div className='dropdown'>
