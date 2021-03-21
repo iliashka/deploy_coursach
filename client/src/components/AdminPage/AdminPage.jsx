@@ -1,14 +1,17 @@
-import axios from 'axios'
-import QueryString from 'qs'
 import React from 'react'
 import { Link } from 'react-router-dom'
 import AdminLogic from './AdminPageLogic'
+import HeaderLogic from '../Header/HeaderLogic'
 
-function AdminPage({users, authUser, setUsers, setEditPost, setProfileInfo}) {
+
+function AdminPage({users, authUser, setUsers, setEditPost, setMyPageInfo, setEditedUser}) {
     const [userPosts, setUserPosts] = React.useState()
-    
-    
-    
+
+
+    const openProfilePage = (user, setMyPageInfo) => {
+        HeaderLogic.myPageHandler(user, setMyPageInfo)
+        setEditedUser(user)
+    }
     return (
         <div className='col-xl-8 offset-xl-2 mt-4 adminTable' >
             <div style={{marginBottom:'5rem'}}>
@@ -31,7 +34,7 @@ function AdminPage({users, authUser, setUsers, setEditPost, setProfileInfo}) {
                     {users.map((user, index) => {
                        return <tr>
                             <th scope='row'>{index + 1}</th>
-                            <td><Link onClick={() => AdminLogic.openProfilePage(user.login, setProfileInfo)} to="/ProfilePage">{user.login}</Link></td>
+                            <td><Link onClick={() => openProfilePage(user, setMyPageInfo)} to="/AdminMyPage">{user.login}</Link></td>
                             <td>{user.email}</td>
                             <td>{user.role}</td>
                             <td>{user.status}</td>
@@ -62,6 +65,11 @@ function AdminPage({users, authUser, setUsers, setEditPost, setProfileInfo}) {
                                         <li><button onClick={() => AdminLogic.updateRole(user, setUsers, authUser)} className='btn btn-primary' type='button'>
                                             {user.role!=='admin'?'Сделать Админом':'Сделать юзером'}
                                         </button></li>
+                                        <li><Link onClick={() => setEditedUser(user)} to='/NewAdminPostPage'>
+                                            <button style = {{ marginRight: '10px' }} className = 'btn btn-info' type = 'button' >
+                                                Создать произведение от<br/> имени пользователя
+                                            </button >
+                                        </Link></li>
                                     </ul>
                                 </div>
                             </td>

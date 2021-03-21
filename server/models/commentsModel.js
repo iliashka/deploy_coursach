@@ -16,7 +16,7 @@ const CommentSchema = new Schema({
         type: String,
         require: true
     }
-})
+});
 
 const Comments = mongoose.model('comments', CommentSchema);
 module.exports = Comments

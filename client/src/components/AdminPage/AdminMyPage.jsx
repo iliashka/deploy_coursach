@@ -3,11 +3,11 @@ import { Link } from 'react-router-dom'
 import FileLoader from '../FileLoader/FileLoader'
 import ReactStars from 'react-rating-stars-component'
 import AdminLogic from '../AdminPage/AdminPageLogic'
-import ProfileLogic from './ProfileLogic'
+import ProfileLogic from '../ProfilePage/ProfileLogic'
 import PostsLogic from '../HomePage/Posts/PostsLogic'
 import EditableLabel from 'react-inline-editing'
 
-function MyPage({ user, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost }) {
+function AdminMyPage({ user, authUser, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost }) {
 
     return (
         <div className='col-md-auto'>
@@ -23,7 +23,7 @@ function MyPage({ user, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost
                     inputMaxLength='50'
                     labelFontWeight='bold'
                     inputFontWeight='bold'
-                    onFocusOut={(text) => ProfileLogic.handleChangeName(text, setUser, user)}
+                    onFocusOut={(text) => AdminLogic.handleChangeName(text, setUser, user, authUser)}
                     />
                 </h2>
                 <h5>Обо мне: 
@@ -38,7 +38,7 @@ function MyPage({ user, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost
                     labelFontWeight='400'
                     inputFontWeight='400'
                     inputFontSize='20px'
-                    onFocusOut={(text) => ProfileLogic.handleChangeInfo(text, setUser, user)}
+                    onFocusOut={(text) => AdminLogic.handleChangeInfo(text, setUser, user, authUser)}
                     />
                 </h5>
                 </div>
@@ -103,7 +103,7 @@ function MyPage({ user, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost
     )
 }
 
-export default MyPage
+export default AdminMyPage
 
     
     

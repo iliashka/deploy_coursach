@@ -29,5 +29,10 @@
     "start": "nodemon server.js",
     "server": "nodemon server.js",
     "client": "cd client && npm start"
+  },
+  "devDependencies": {
+    "eslint": "^7.22.0",
+    "eslint-config-rallycoding": "^3.2.0",
+    "eslint-plugin-react": "^7.22.0"
   }
 }

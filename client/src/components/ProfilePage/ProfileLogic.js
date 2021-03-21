@@ -15,9 +15,30 @@ const deletePostHandler = (post, user, setMyPageInfo) => {
         })
 }
 
+const handleChangeInfo = (text, setUser, user) => {
+    console.log('Left editor with text: ' + text);
+    axios.put('api/updateUser', qs.stringify({userId: user.id, updateId: user.id, update: {aboutMe: text}}))
+    .then((res) => {
+        setUser(res.data.user)
+        localStorage.removeItem("user")
+        localStorage.setItem("user", JSON.stringify(res.data.user))
+    })
+} 
+const handleChangeName = (text, setUser, user) => {
+    console.log('Left editor with text: ' + text);
+    axios.put('api/updateUser', qs.stringify({userId: user.id, updateId: user.id, update: {login: text}}))
+    .then((res) => {
+        setUser(res.data.user)
+        localStorage.removeItem("user")
+        localStorage.setItem("user", JSON.stringify(res.data.user))
+    })
+}
+
 const ProfileLogic = {
     searchByGenre,
-    deletePostHandler
+    deletePostHandler,
+    handleChangeInfo,
+    handleChangeName
 }
 
 export default ProfileLogic 

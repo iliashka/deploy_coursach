@@ -34,6 +34,10 @@ const UserSchema = new Schema({
         type: String,
         default: 'active',
         enum: ['active', 'blocked']
+    },
+    aboutMe: {
+        type: String,
+        default: "Всем Привет"
     }
 
 });

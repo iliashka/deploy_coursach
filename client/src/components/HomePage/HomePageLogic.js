@@ -11,7 +11,7 @@ const searchByGenre = (genre, setPosts) => {
 const takeAllPosts = (setPosts) => {
     axios.get('api/posts')
       .then((res) => {
-      setPosts(res.data.posts.reverse())
+          setPosts(res.data.posts.reverse())
     })
 }
 

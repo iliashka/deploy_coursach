@@ -1,5 +1,3 @@
-import axios from 'axios';
-import qs from 'qs'
 import React from 'react'
 import { Link, NavLink } from 'react-router-dom'
 import s from './Header.module.css';

@@ -54,6 +54,20 @@ const openProfilePage = (login, setProfileInfo) => {
             setProfileInfo(res.data.data)
         })
 }
+const handleChangeInfo = (text, setUser, user, authUser) => {
+    console.log('Left editor with text: ' + text);
+    axios.put('api/updateUser', qs.stringify({userId: authUser.id, updateId: user._id, update: {aboutMe: text}}))
+    .then((res) => {
+        setUser(res.data.user)
+    })
+} 
+const handleChangeName = (text, setUser, user, authUser) => {
+    console.log('Left editor with text: ' + text);
+    axios.put('api/updateUser', qs.stringify({userId: authUser.id, updateId: user._id, update: {login: text}}))
+    .then((res) => {
+        setUser(res.data.user)
+    })
+}
 
 const AdminLogic = {
     deleteUser,
@@ -61,7 +75,9 @@ const AdminLogic = {
     changeStatus,
     openProfilePage,
     openEditPage,
-    getUserPosts
+    getUserPosts,
+    handleChangeInfo,
+    handleChangeName
 }
 
 export default AdminLogic 

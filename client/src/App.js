@@ -12,6 +12,9 @@ import EditPost from './components/HomePage/Posts/EditPost';
 import AdminPage from './components/AdminPage/AdminPage';
 import Privacy from './components/AdminPage/Privacy';
 import Footer from './components/Footer/Footer';
+import ErrorPage from './components/ErrorPage/ErrorPage';
+import NewAdminPostPage from './components/AdminPage/NewAdminPostPage';
+import AdminMyPage from './components/AdminPage/AdminMyPage';
 
 
 
@@ -21,7 +24,8 @@ function App() {
     email: '',
     role: '',
     login: '',
-    avatar: ''
+    avatar: '',
+    aboutMe: ''
   })
   const [users, setUsers] = React.useState()
   const [myPageInfo, setMyPageInfo] = React.useState()
@@ -30,7 +34,7 @@ function App() {
   const [editPost, setEditPost] = React.useState()
   const [tags, setTags] = React.useState()
   const [profileInfo, setProfileInfo] = React.useState()
-
+  const [editedUser, setEditedUser] = React.useState()
   return (
     <div className="App" style={{height: '100%'}}>
       <Header setUsers={setUsers} setPost={setPost} setMyPageInfo={setMyPageInfo} setUser={setAuthUser} user={authUser} />
@@ -38,6 +42,11 @@ function App() {
                                                   setTags={setTags} 
                                                   tags={tags} 
                                                   user={authUser} />} />
+      <Route path='/NewAdminPostPage' render={() => <NewAdminPostPage
+                                                      user={editedUser}
+                                                      tags={tags}
+                                                      setTags={setTags}
+                                                    />} />
       <Route path='/HomePage' render={() =>    <HomePage 
                                                   setProfileInfo={setProfileInfo} 
                                                   setTags={setTags} 
@@ -60,6 +69,15 @@ function App() {
                                                   user={authUser} 
                                                   setMyPageInfo={setMyPageInfo} 
                                                   myPageInfo={myPageInfo} />} />
+      <Route path='/AdminMyPage' render={() =>  <AdminMyPage
+                                                  setEditPost={setEditPost} 
+                                                  setPost={setPost} 
+                                                  setUser={setEditedUser}
+                                                  user={editedUser}
+                                                  authUser={authUser}
+                                                  setMyPageInfo={setMyPageInfo} 
+                                                  myPageInfo={myPageInfo}
+                                                  />}/>
       <Route path='/PostPage' render={() =>     <PostPage 
                                                   user={authUser} 
                                                   setPosts={setPosts} 
@@ -69,12 +87,14 @@ function App() {
                                                   setEditPost={setEditPost} 
                                                   editPost={editPost} />} />
       <Route path='/AdminPage' render={() =>    <AdminPage 
-                                                  setProfileInfo={setProfileInfo} 
+                                                  setMyPageInfo={setMyPageInfo} 
                                                   setEditPost={setEditPost} 
+                                                  setEditedUser={setEditedUser}
                                                   setUsers={setUsers} 
                                                   authUser={authUser} 
                                                   users={users} />} />
       <Route path='/Privacy' render={() =>      <Privacy/>}/>
+      <Route path='/Error' render={() =>        <ErrorPage/>}/>
       <Footer/>
     </div>
   );

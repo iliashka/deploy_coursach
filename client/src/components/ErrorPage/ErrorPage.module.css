@@ -1,0 +1,7 @@
+.image {
+    width: 400px;
+    height: 300px;
+    margin-top: 10%;
+    background-size: contain;
+    background-image: url('./gollum.png');
+}
