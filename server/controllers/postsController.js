@@ -1,11 +1,11 @@
-const User = require('./../models/userModel');
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-const { roles } = require('../roles');
-const Post = require('../models/postsModel');
-const Like = require('../models/likesModel');
-const Tags = require('../models/tagsModel');
-const elasticsearch = require('elasticsearch')
+const User = require("./../models/userModel");
+const jwt = require("jsonwebtoken");
+const bcrypt = require("bcrypt");
+const { roles } = require("../roles");
+const Post = require("../models/postsModel");
+const Like = require("../models/likesModel");
+const Tags = require("../models/tagsModel");
+const elasticsearch = require("elasticsearch")
 
 const esClient = elasticsearch.Client({
     host: "http://127.0.0.1:9200",
@@ -24,7 +24,7 @@ exports.createIndex = async (req, res, next) => {
                 "post": req.post
             }
         })
-        await res.status(200).json({msg: 'good'})
+        await res.status(200).json({msg: "good"})
     } catch (error) {
         next(error)
     }
@@ -68,7 +68,7 @@ exports.search = async (req, res, next) => {
        const {text} = req.body
        console.log(text)
        await esClient.search({
-           index: 'posts2',
+           index: "posts2",
            body: {
                query: {
                    query_string: {
@@ -117,7 +117,7 @@ exports.plusLike = async (req, res, next) => {
                 const posts = await Post.find({})
                 await res.json({
                     posts,
-                    message: 'Вы поставили лайк'
+                    message: "Вы поставили лайк"
                 })
             } else {
                 await Like.findByIdAndDelete(isLike._id)
@@ -126,7 +126,7 @@ exports.plusLike = async (req, res, next) => {
                 const posts = await Post.find({})
                 await res.json({
                     posts,
-                    message: 'Лайк удалён'
+                    message: "Лайк удалён"
                 })
             };
             
@@ -183,7 +183,7 @@ exports.editPost = async (req, res, next) => {
         const { id, genre, summary, postName, post } = req.body;
         await Post.findByIdAndUpdate(id, {genre: genre, summary: summary, postName: postName, post: post}, {new: true})
         await res.status(200).json({
-            message: 'Пост Изменён'
+            message: "Пост Изменён"
         })
     } catch (error) {
         next(error)

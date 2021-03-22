@@ -4,9 +4,8 @@ import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 import PostsLogic from './PostsLogic';
 
-function EditPost({ editPost }) {
+function EditPost({ editPost, value, setValue }) {
     const [selectedTab, setSelectedTab] = React.useState("write");
-    const [value, setValue] = React.useState(editPost && editPost.post)
     const [preEditPost, setPreEditPost] = React.useState({
         genre: editPost && editPost.genre,
         postName: editPost && editPost.postName,
@@ -14,6 +13,7 @@ function EditPost({ editPost }) {
         id: editPost && editPost._id,
         post: editPost && editPost.post
     })
+    console.log(value)
 
     return (
         <div>
@@ -44,9 +44,6 @@ function EditPost({ editPost }) {
                     </div><br />
                     <div className="form-group green-border-focus">
                         <label><h5 className='card-text'>Ваше Произведение:</h5></label>
-                        <textarea defaultValue={editPost && editPost.post} 
-                                  onChange={(e) => setPreEditPost(preEditPost => ({ ...preEditPost, post: e.target.value }))} 
-                                  className="form-control" id="exampleFormControlTextarea5" rows="5"></textarea>
                                   <ReactMde
                                     value={value}
                                     onChange={setValue}

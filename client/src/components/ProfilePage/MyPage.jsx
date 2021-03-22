@@ -7,8 +7,8 @@ import ProfileLogic from './ProfileLogic'
 import PostsLogic from '../HomePage/Posts/PostsLogic'
 import EditableLabel from 'react-inline-editing'
 
-function MyPage({ user, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost }) {
-
+function MyPage({ user, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost, setValue }) {
+    
     return (
         <div className='col-md-auto'>
             <div className='profile_wrapper' style={{ paddingTop: '30px', paddingBottom: '70px', maxWidth: '60%', margin: 'auto', display: 'flex', justifyContent: 'space-between' }}>{myPageInfo &&
@@ -86,7 +86,7 @@ function MyPage({ user, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost
                                                 Удалить
                                             </button ></li>
                                             <li><button style={{marginRight: '10px'}} className='btn btn-warning' type='button'>
-                                                <Link onClick={() => AdminLogic.openEditPage(post._id, setEditPost)} to='/EditPage' style={{color: 'white', textDecoration: 'none'}}>Редактировать</Link>
+                                                <Link onClick={() => AdminLogic.openEditPage(post._id, setEditPost, setValue)} to='/EditPage' style={{color: 'white', textDecoration: 'none'}}>Редактировать</Link>
                                             </button></li>
                                             <li><button className='btn btn-primary' type='button'>
                                                 <Link onClick={() => PostsLogic.readPostHandler(post, setPost)} to='/PostPage' style={{color: 'white', textDecoration: 'none'}}>Читать</Link>

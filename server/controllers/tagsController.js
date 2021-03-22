@@ -1,6 +1,6 @@
-const User = require('../models/userModel');
-const Post = require('../models/postsModel');
-const Tags = require('../models/tagsModel');
+const User = require("../models/userModel");
+const Post = require("../models/postsModel");
+const Tags = require("../models/tagsModel");
 
 exports.newTag = async (req, res, next) => {
     try {
@@ -21,7 +21,7 @@ exports.newTag = async (req, res, next) => {
             })
         }else{
             res.status(404).json({
-                msg: 'Такой тег уже существует'
+                msg: "Такой тег уже существует"
             })
         }
     } catch (error) {

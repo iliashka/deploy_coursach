@@ -1,12 +1,19 @@
 import React from 'react'
 import ReactStars from 'react-rating-stars-component'
 import ReactMarkdown from "react-markdown";
-import PostsLogic from './PostsLogic'
+import PostsLogic from './PostsLogic';
+import Pdf from "react-to-pdf";
 
 function PostPage({ user, post, setPosts }) {
+    const refPdf = React.createRef()
     return (
         <div>
-            <div className="card border-secondary mb-3" style={{ maxWidth: '80%', margin: 'auto', marginTop: '3rem' }}>
+            <div className='d-flex justify-content-center'>
+                <Pdf targetRef={refPdf} filename="chudo.pdf">
+                    {({ toPdf }) => <button className='btn btn-secondary mt-4' onClick={toPdf}>Generate Pdf</button>}
+                </Pdf>
+            </div>
+            <div ref={refPdf} className="card border-secondary mb-3" style={{ maxWidth: '80%', margin: 'auto', marginTop: '3rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }} className="card-header">
                     <h3 style={{ marginLeft: '1rem' }}>Автор: {post && post.login}</h3>
                     <h3 style={{ marginRight: '1rem' }}>Жанр: {post && post.genre}</h3>
@@ -29,6 +36,7 @@ function PostPage({ user, post, setPosts }) {
                         <i onClick={() => PostsLogic.likeHandlerPlus(post, user, setPosts)} style={{marginLeft:'rem', paddingRight: '15px', cursor: 'pointer' }} className="bi bi-hand-thumbs-up">Поставить лайк</i>
                     </div>
             </div>
+            
         </div>
     )
 }

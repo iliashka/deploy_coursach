@@ -1,8 +1,8 @@
-const User = require('./../models/userModel');
-const Post = require('../models/postsModel');
-const Like = require('../models/likesModel');
-const Rate = require('../models/rateModel');
-const Comments = require('../models/commentsModel'); 
+const User = require("./../models/userModel");
+const Post = require("../models/postsModel");
+const Like = require("../models/likesModel");
+const Rate = require("../models/rateModel");
+const Comments = require("../models/commentsModel"); 
 
 exports.addComment = async (req, res, next) => {
     try {
@@ -14,7 +14,7 @@ exports.addComment = async (req, res, next) => {
         await post.save();
         const posts = await Post.find({});
         res.status(200).json({
-            posts, message: 'коммент добавлен'
+            posts, message: "коммент добавлен"
         })
     } catch (error) {
         next(error)

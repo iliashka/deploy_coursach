@@ -84,11 +84,15 @@ exports.login = async (req, res, next) => {
 }
 
 exports.getUsers = async (req, res, next) => {
-    const users = await User.find({});
-    res.status(200).json({
+    try {
+        const users = await User.find({});
+        res.status(200).json({
         users
-    })
-}
+        });
+    } catch (error) {
+        next(error);
+    }
+};
 
 exports.getUser = async (req, res, next) => {
     try {
@@ -97,11 +101,11 @@ exports.getUser = async (req, res, next) => {
       if (!user) return next(new Error("Нет такого пользователя!"));
         res.status(200).json({
             data: user
-        })
+        });
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
 
 exports.updateUser = async (req, res, next) => {
     try {

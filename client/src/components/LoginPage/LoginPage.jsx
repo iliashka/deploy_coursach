@@ -16,7 +16,7 @@ function LoginPage({authUser, setAuthUser, setTags}) {
         <i class="bi bi-facebook"></i>
       </button>
     );
-    
+
     return (
         <div style={{marginTop: '4em'}} className="col-md-6 offset-md-3">
           <h1>Логин</h1>

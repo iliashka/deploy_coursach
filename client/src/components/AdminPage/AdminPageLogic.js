@@ -42,10 +42,11 @@ const getUserPosts = (login, setUserPosts) => {
         setUserPosts(res.data.data.posts)
     })
 }
-const openEditPage = (id, setEditPost) => {
+const openEditPage = (id, setEditPost, setValue) => {
     axios.post('api/post', qs.stringify({postId: id}))
     .then(res => {
         setEditPost(res.data.post)
+        setValue(res.data.post.post)
     })
 }
 const openProfilePage = (login, setProfileInfo) => {

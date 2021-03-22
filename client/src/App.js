@@ -35,6 +35,7 @@ function App() {
   const [tags, setTags] = React.useState()
   const [profileInfo, setProfileInfo] = React.useState()
   const [editedUser, setEditedUser] = React.useState()
+  const [value, setValue] = React.useState()
   return (
     <div className="App" style={{height: '100%'}}>
       <Header setUsers={setUsers} setPost={setPost} setMyPageInfo={setMyPageInfo} setUser={setAuthUser} user={authUser} />
@@ -67,6 +68,7 @@ function App() {
                                                   setPost={setPost} 
                                                   setUser={setAuthUser} 
                                                   user={authUser} 
+                                                  setValue={setValue}
                                                   setMyPageInfo={setMyPageInfo} 
                                                   myPageInfo={myPageInfo} />} />
       <Route path='/AdminMyPage' render={() =>  <AdminMyPage
@@ -85,7 +87,9 @@ function App() {
       <Route path='/EditPage' render={() =>     <EditPost 
                                                   user={authUser} 
                                                   setEditPost={setEditPost} 
-                                                  editPost={editPost} />} />
+                                                  editPost={editPost}
+                                                  setValue={setValue}
+                                                  value={value} />} />
       <Route path='/AdminPage' render={() =>    <AdminPage 
                                                   setMyPageInfo={setMyPageInfo} 
                                                   setEditPost={setEditPost} 

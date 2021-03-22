@@ -1,7 +1,7 @@
-const User = require('./../models/userModel');
-const Post = require('../models/postsModel');
-const Like = require('../models/likesModel');
-const Rate = require('../models/rateModel')
+const User = require("./../models/userModel");
+const Post = require("../models/postsModel");
+const Like = require("../models/likesModel");
+const Rate = require("../models/rateModel")
 
 exports.ratePost = async (req, res, next) => {
     try {
@@ -20,13 +20,13 @@ exports.ratePost = async (req, res, next) => {
                 const posts = await Post.find({})
                 await res.json({
                     posts,
-                    message: 'Вы поставили рейтинг'
+                    message: "Вы поставили рейтинг"
                 })
             } else {
                 const posts = await Post.find({})
                 await res.json({
                     posts,
-                    message: 'Вы уже поставили рейтинг'
+                    message: "Вы уже поставили рейтинг"
                 })
             };
             
