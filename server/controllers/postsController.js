@@ -6,25 +6,24 @@ const Post = require("../models/postsModel");
 const Like = require("../models/likesModel");
 const Tags = require("../models/tagsModel");
 const elasticsearch = require("elasticsearch")
+const algoliasearch = require('algoliasearch')
 
-const esClient = elasticsearch.Client({
-    host: "http://127.0.0.1:9200",
-})
-
+// const esClient = elasticsearch.Client({
+//     host: "http://127.0.0.1:9200",
+// })
+const client = algoliasearch('N815CNHWDN', 'a27316884c56adae6fffbe1090805388');
+const index = client.initIndex("posts2")
 
 exports.createIndex = async (req, res, next) => {
     try {
-        let str = `${req.post.post} ${req.post.summary} ${req.post.postName}`
-        console.log(str.trim())
-        esClient.index({
-            index: "posts2",
-            body: {
-                "id": req.post._id,
-                "text": str,
-                "post": req.post
-            }
-        })
-        await res.status(200).json({msg: "good"})
+        const object = req.post
+        console.log(object)
+        index
+          .saveObject(object, { autoGenerateObjectIDIfNotExist: true })
+          .then(() => {
+              res.status(200).json({msg: "good"})
+          }) 
+          .catch((err) => console.log(err))       
     } catch (error) {
         next(error)
     }
@@ -56,7 +55,7 @@ exports.newPost = async (req, res, next) => {
                     return;
                 }
             });
-        req.post = newPost;
+         req.post = newPost;
         next()
     } catch (error) {
         next(error)
@@ -66,25 +65,16 @@ exports.newPost = async (req, res, next) => {
 exports.search = async (req, res, next) => {
     try {
        const {text} = req.body
-       console.log(text)
-       await esClient.search({
-           index: "posts2",
-           body: {
-               query: {
-                   query_string: {
-                       "default_field": "text",
-                       query: `*${text}*`,
-                    }, 
-                    
-               }
-           }
-       }) 
-       .then(async (response) => {
-        const arr = response.hits.hits.map((e, i) => {
-            return e._source.post
+       if(text.length >= 1) {
+        await index
+        .search(text) 
+        .then(({hits}) => {
+        const arr = hits.map((e, i) => {
+            return e
         }) 
-            await res.status(200).json(arr)
-        })
+        console.log(arr)
+        res.status(200).json(arr)
+    })}
     } catch (error) {
         next(error)
     }

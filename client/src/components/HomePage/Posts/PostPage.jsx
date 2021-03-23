@@ -8,11 +8,7 @@ function PostPage({ user, post, setPosts }) {
     const refPdf = React.createRef()
     return (
         <div>
-            <div className='d-flex justify-content-center'>
-                <Pdf targetRef={refPdf} filename="chudo.pdf">
-                    {({ toPdf }) => <button className='btn btn-secondary mt-4' onClick={toPdf}>Generate Pdf</button>}
-                </Pdf>
-            </div>
+            
             <div ref={refPdf} className="card border-secondary mb-3" style={{ maxWidth: '80%', margin: 'auto', marginTop: '3rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }} className="card-header">
                     <h3 style={{ marginLeft: '1rem' }}>Автор: {post && post.login}</h3>
@@ -35,6 +31,11 @@ function PostPage({ user, post, setPosts }) {
                         </div>
                         <i onClick={() => PostsLogic.likeHandlerPlus(post, user, setPosts)} style={{marginLeft:'rem', paddingRight: '15px', cursor: 'pointer' }} className="bi bi-hand-thumbs-up">Поставить лайк</i>
                     </div>
+            </div>
+            <div style={{width: '80%'}} className='d-flex m-auto justify-content-end'>
+                <Pdf targetRef={refPdf} filename="chudo.pdf">
+                    {({ toPdf }) => <button className='btn btn-primary mt-4' onClick={toPdf}>Экспорт в PDF</button>}
+                </Pdf>
             </div>
             
         </div>

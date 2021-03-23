@@ -4,6 +4,7 @@ import s from '../Header/Header.module.css';
 import FaceBookAuth from 'react-facebook-auth'
 import VkAuth from "react-vk-auth";
 import LoginLogic from './LoginLogic'
+import TwitterLogin from 'react-twitter-login'
 
 function LoginPage({authUser, setAuthUser, setTags}) {
     const [preUser, setPreUser] = React.useState({
@@ -16,6 +17,9 @@ function LoginPage({authUser, setAuthUser, setTags}) {
         <i class="bi bi-facebook"></i>
       </button>
     );
+    const authHandler = (err, data) => {
+      console.log(err, data);
+    };
 
     return (
         <div style={{marginTop: '4em'}} className="col-md-6 offset-md-3">
@@ -61,6 +65,11 @@ function LoginPage({authUser, setAuthUser, setTags}) {
             apiId='7795032'
             callback={(data) => LoginLogic.handleVkResponse(data, setTags, setAuthUser)}
             >VK</VkAuth>
+            <TwitterLogin
+              authCallback={authHandler}
+              consumerKey='qy4X2LlxkwuvNw53oeIfJ2IGI'
+              consumerSecret='FTdSsfzRJIMV76YWN6LDPkHAgrKiMUP5slWFjQaPWGtwvDAOFz'
+            />
           </div>
           <div className='mt-4'>
             <Link to='/Privacy'>Политика конфиденциальности</Link>

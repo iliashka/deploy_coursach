@@ -3,10 +3,16 @@ import PostsList from './PostsList';
 import HeaderLogic from '../HeaderLogic'
 
 function SearchComponent({setPost}) {
-    const [input, setInput] = React.useState('');
+    const [input, setInput] = React.useState({
+        text: ''
+    });
     const [postsList, setPostsList] = React.useState();
 
-    React.useEffect(() => {HeaderLogic.postData(input, setPostsList)}, [input]);
+    const search = async (e) => {
+        setInput(input => ({...input, text: e.target.value}));
+        await HeaderLogic.postData(input.text, setPostsList)
+    }
+    
     return (
         <div>
             <input
@@ -15,9 +21,7 @@ function SearchComponent({setPost}) {
             type='search'
             key='random1'
             placeholder='Поиск'
-            onChange={(e) => setInput(e.target.value)}
-            onFocus={(e) => setInput(e.target.value)}
-            />
+            onChange={search}/>
             <PostsList setPostsList={setPostsList} setPost={setPost} postsList={postsList}/>
         </div>
     )
