@@ -4,7 +4,7 @@ import s from '../Header/Header.module.css';
 import FaceBookAuth from 'react-facebook-auth'
 import VkAuth from "react-vk-auth";
 import LoginLogic from './LoginLogic'
-import TwitterLogin from 'react-twitter-login'
+import LoginGithub from 'react-login-github';
 
 function LoginPage({authUser, setAuthUser, setTags}) {
     const [preUser, setPreUser] = React.useState({
@@ -17,9 +17,9 @@ function LoginPage({authUser, setAuthUser, setTags}) {
         <i class="bi bi-facebook"></i>
       </button>
     );
-    const authHandler = (err, data) => {
-      console.log(err, data);
-    };
+    
+    const onSuccess = response => console.log(response);
+    const onFailure = response => console.error(response);
 
     return (
         <div style={{marginTop: '4em'}} className="col-md-6 offset-md-3">
@@ -65,10 +65,11 @@ function LoginPage({authUser, setAuthUser, setTags}) {
             apiId='7795032'
             callback={(data) => LoginLogic.handleVkResponse(data, setTags, setAuthUser)}
             >VK</VkAuth>
-            <TwitterLogin
-              authCallback={authHandler}
-              consumerKey='qy4X2LlxkwuvNw53oeIfJ2IGI'
-              consumerSecret='FTdSsfzRJIMV76YWN6LDPkHAgrKiMUP5slWFjQaPWGtwvDAOFz'
+            <LoginGithub 
+              className='btn btn-dark ml-2'
+              clientId="Iv1.3b101205eaa5da98"
+              onSuccess={onSuccess}
+              onFailure={onFailure}
             />
           </div>
           <div className='mt-4'>
