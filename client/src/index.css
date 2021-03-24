@@ -61,6 +61,82 @@ body .btn.btn-primary.fb {
   border-color: #0D6efd !important;
 }
 
+body .adminButton {
+  margin-left: 10px;
+}
+
+@media only screen and (max-width: 525px) {
+  body .filters {
+    flex-direction: column !important;
+    align-items: center;
+  }
+  body .filters >.dropdown {
+    margin-top: 1rem;
+  }
+  body .card-header h3 {
+    font-size: 18px !important;
+  }
+  body .border {
+    flex-direction: column !important;
+  }
+  body .header .navbar .form-inline div input{
+    margin-right: 45px !important;
+  }
+  body .card:last-child{
+    margin-bottom: 30% !important;
+  }
+}
+
+@media only screen and (max-width: 450px){
+  body .header .navbar{
+    padding: 8px 5px !important;
+  }
+  body .header .navbar .form-inline div input{
+    margin-right: 68px !important;
+  }
+  body .card:last-child{
+    margin-bottom: 35% !important;
+  }
+}
+@media only screen and (max-width: 415px){
+  body .header .navbar{
+    padding: 8px 5px !important;
+  }
+  body .header .navbar .form-inline div input{
+    margin-right: 10px !important;
+  }
+  body .card:last-child{
+    margin-bottom: 35% !important;
+  }
+  body .header .navbar .form-inline {
+    justify-content: flex-start;
+  }
+  body .card-header{
+    padding: 5px 2px;
+  }
+  body .footer{
+    padding-top: 0 !important;
+  }
+}
+
+@media only screen and (max-width: 320px) {
+  .header .navbar {
+    width: 100vw;
+  }
+  .header .navbar .form-inline {
+    display: flex;
+    flex-direction: column;
+  }
+  body .card-header{
+    padding: 5px 2px;
+  }
+  body .card-header h3 {
+    font-size: 14px !important;
+  }
+  body .card-body {
+    padding: 2px 2px !important;
+  }
+}
 
 @media only screen and (max-width: 1200px){
   .header .navbar button {
@@ -97,15 +173,7 @@ body .btn.btn-primary.fb {
     position: relative;
   }
 }
-@media only screen and (max-width: 320px) {
-  .header .navbar {
-    width: 100vw;
-  }
-  .header .navbar .form-inline {
-    display: flex;
-    flex-direction: column;
-  }
-}
+
 @media only screen and (max-width: 420px) {
   body .header{
     max-width: 100%;

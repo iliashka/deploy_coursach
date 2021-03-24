@@ -18,10 +18,12 @@ function Header({ setMyPageInfo, user, setUser, setPost, setUsers }) {
         <div className='header'>
           <nav className="navbar navbar-light bg-light">
             <Link className={s.logo} onClick={() => document.location.href = 'HomePage'}></Link>
-            <button onClick={changeTheme} className='btn'>Сменить тему</button>
-            {user!==null && user.role==='admin'? <button type='button' className='btn btn-primary adminButton'>
-              <Link onClick={() => HeaderLogic.takeUsersHandler(user, setUsers)} style={{color: 'white', textDecoration: 'none'}} to='/AdminPage'>Страница админа</Link>
-            </button>:<div></div>}
+            <div className='firstBlock'>
+              <button onClick={changeTheme} className='btn'>Сменить тему</button>
+              {user!==null && user.role==='admin'? <button type='button' className='btn btn-primary adminButton'>
+                <Link onClick={() => HeaderLogic.takeUsersHandler(user, setUsers)} style={{color: 'white', textDecoration: 'none'}} to='/AdminPage'>Страница админа</Link>
+              </button>:<div></div>}
+            </div>
             <form className="form-inline">
               <SearchComponent setPost={setPost}/>
               <button style={{marginRight: '10px'}} className="btn btn-primary">

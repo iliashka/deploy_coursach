@@ -33,7 +33,7 @@ function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo,
                   })}
                 </div>
             </div>
-            <div className="w-100 d-flex justify-content-between mb-4">
+            <div className="w-100 d-flex justify-content-between mb-4 filters">
               <div className='dropdown'>
                 <button className="btn btn-bd-light dropdown-toggle" type="button" id="dropdownMenuButton1" data-bs-toggle="dropdown" aria-expanded="false">
                   Фильтровать по жанру
