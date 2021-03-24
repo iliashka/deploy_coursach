@@ -19,6 +19,11 @@ function Posts({ user, posts, setPost, setPosts, setProfileInfo }) {
         logic.takeAllPosts(setPosts)
     }, [count, setPosts])
 
+    const likeHandler = (e, post) => {
+        e.target.className === "bi bi-hand-thumbs-up-fill"?e.target.className = "bi bi-hand-thumbs-up":e.target.className = "bi bi-hand-thumbs-up-fill";
+        PostsLogic.likeHandlerPlus(post, user, setPosts)
+    }
+
     return (
         <div className='wrapper'>
             {posts && posts.map((post, index) => {
@@ -64,14 +69,13 @@ function Posts({ user, posts, setPost, setPosts, setProfileInfo }) {
                                 count={5}
                                 value={post.rating}
                                 edit={false}
-                                onChange={(newRating) => PostsLogic.ratingChange(post, setPosts, newRating, user)}
                                 size={24}
                                 activeColor="#ffd700"
                             />
                         </div>
                         <div style={{display: 'flex'}}>
                             <h5 style={{ marginLeft: '20px', marginBottom: '0', marginRight: '15px' }}>Лайков: {post.likesCount}</h5>
-                            <i onClick={() => PostsLogic.likeHandlerPlus(post, user, setPosts)} style={{ paddingRight: '15px', cursor: 'pointer' }} className="bi bi-hand-thumbs-up">Оценить</i>
+                            <i onClick={(e) => likeHandler(e, post)} style={{ paddingRight: '15px', cursor: 'pointer' }} className="bi bi-hand-thumbs-up">Оценить</i>
                         </div>
                     </div>
                     {post.tags !== [] && 

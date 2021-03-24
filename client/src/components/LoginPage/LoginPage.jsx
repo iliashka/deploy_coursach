@@ -1,5 +1,5 @@
 import React from 'react'
-import { Link, NavLink } from 'react-router-dom'
+import { NavLink } from 'react-router-dom'
 import s from '../Header/Header.module.css';
 import FaceBookAuth from 'react-facebook-auth'
 import VkAuth from "react-vk-auth";

@@ -4,7 +4,7 @@ import AdminLogic from './AdminPageLogic'
 import HeaderLogic from '../Header/HeaderLogic'
 
 
-function AdminPage({users, authUser, setUsers, setEditPost, setMyPageInfo, setEditedUser}) {
+function AdminPage({users, authUser, setUsers, setEditPost, setMyPageInfo, setEditedUser, setValue}) {
     const [userPosts, setUserPosts] = React.useState()
 
 
@@ -45,7 +45,7 @@ function AdminPage({users, authUser, setUsers, setEditPost, setMyPageInfo, setEd
                                     </button>
                                     <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
                                         {userPosts && userPosts.map((e) => {
-                                            return <li><Link onClick={() => AdminLogic.openEditPage(e._id, setEditPost)} to='/EditPage' >{e.postName}</Link></li>
+                                            return <li><Link onClick={() => AdminLogic.openEditPage(e._id, setEditPost, setValue)} to='/EditPage' >{e.postName}</Link></li>
                                         })}
                                     </ul>
                                 </div>

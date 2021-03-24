@@ -11,7 +11,18 @@ function Header({ setMyPageInfo, user, setUser, setPost, setUsers }) {
     }
 
     const changeTheme = () => {
-      document.body.classList.toggle('dark')
+      const theme = localStorage.getItem('theme')
+      if(theme === 'dark'){
+        document.body.classList.toggle('dark')
+        localStorage.removeItem('theme')
+        localStorage.setItem("theme", "light")
+        console.log(localStorage.getItem('theme'))
+      }else{
+        document.body.classList.toggle('dark')
+        localStorage.removeItem('theme')
+        localStorage.setItem("theme", "dark")
+        console.log(localStorage.getItem('theme'))
+      }
     }
 
     return (

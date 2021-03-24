@@ -13,7 +13,7 @@ function EditPost({ editPost, value, setValue }) {
         id: editPost && editPost._id,
         post: editPost && editPost.post
     })
-    console.log(editPost)
+    console.log(preEditPost)
 
     return (
         <div>

@@ -8,13 +8,13 @@ const openProfilePage = (post, setProfileInfo) => {
         })
 }
 
-const likeHandlerPlus = (post, user, setPosts) => {
+const likeHandlerPlus = ( post, user, setPosts) => {
     if (user === null) {
         alert('Чтобы оценить произведение, сначала войдите в систему!')
     } else {
         axios.put('api/plusLike', qs.stringify({ postId: post._id, userId: user.id }))
             .then((res) => {
-                setPosts(res.data.posts)
+                setPosts(res.data.posts);
             })
     }
 }
@@ -50,11 +50,11 @@ const sendCommentHandler = (post, user, setPosts, commentBody) => {
 }
 
 const editPostHandler = (value, preEditPost, editPost) => {
-    axios.put('api/editPost', qs.stringify({ genre: preEditPost.genre,
-                                        id: editPost._id, 
-                                        summary: preEditPost.summary, 
-                                        postName: preEditPost.postName, 
-                                        post: value }))
+    axios.put('api/editPost', qs.stringify({ id: editPost._id,
+                                             update: {genre: preEditPost.genre, 
+                                                      summary: preEditPost.summary, 
+                                                      postName: preEditPost.postName, 
+                                                      post: value} }))
     .then((res)=> {
         alert(res.data.message)
     })

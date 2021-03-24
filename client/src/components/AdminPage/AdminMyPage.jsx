@@ -7,7 +7,7 @@ import ProfileLogic from '../ProfilePage/ProfileLogic'
 import PostsLogic from '../HomePage/Posts/PostsLogic'
 import EditableLabel from 'react-inline-editing'
 
-function AdminMyPage({ user, authUser, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost }) {
+function AdminMyPage({ user, authUser, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost, setValue }) {
 
     return (
         <div className='col-md-auto'>
@@ -82,11 +82,11 @@ function AdminMyPage({ user, authUser, myPageInfo, setEditPost, setMyPageInfo, s
                                             Действия
                                         </button>
                                         <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
-                                            <li><button onClick = {() => ProfileLogic.deletePostHandler(post, user, setMyPageInfo)} style = {{ marginRight: '10px' }} className = 'btn btn-danger' type = 'button' >
+                                            <li><button onClick = {() => AdminLogic.deletePostHandler(post, authUser, user, setMyPageInfo)} style = {{ marginRight: '10px' }} className = 'btn btn-danger' type = 'button' >
                                                 Удалить
                                             </button ></li>
                                             <li><button style={{marginRight: '10px'}} className='btn btn-warning' type='button'>
-                                                <Link onClick={() => AdminLogic.openEditPage(post._id, setEditPost)} to='/EditPage' style={{color: 'white', textDecoration: 'none'}}>Редактировать</Link>
+                                                <Link onClick={() => AdminLogic.openEditPage(post._id, setEditPost, setValue)} to='/EditPage' style={{color: 'white', textDecoration: 'none'}}>Редактировать</Link>
                                             </button></li>
                                             <li><button className='btn btn-primary' type='button'>
                                                 <Link onClick={() => PostsLogic.readPostHandler(post, setPost)} to='/PostPage' style={{color: 'white', textDecoration: 'none'}}>Читать</Link>

@@ -76,6 +76,7 @@ function App() {
                                                   setPost={setPost} 
                                                   setUser={setEditedUser}
                                                   user={editedUser}
+                                                  setValue={setValue}
                                                   authUser={authUser}
                                                   setMyPageInfo={setMyPageInfo} 
                                                   myPageInfo={myPageInfo}
@@ -95,6 +96,7 @@ function App() {
                                                   setEditPost={setEditPost} 
                                                   setEditedUser={setEditedUser}
                                                   setUsers={setUsers} 
+                                                  setValue={setValue}
                                                   authUser={authUser} 
                                                   users={users} />} />
       <Route path='/Privacy' render={() =>      <Privacy/>}/>

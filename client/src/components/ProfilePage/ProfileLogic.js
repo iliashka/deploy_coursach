@@ -9,7 +9,7 @@ const searchByGenre = (e, user, setMyPageInfo) => {
 }
 
 const deletePostHandler = (post, user, setMyPageInfo) => {
-    axios.put('api/deletePost', qs.stringify({ postId: post._id, userId: user.id }))
+    axios.put('api/deletePost', qs.stringify({ postId: post._id, userId: user.id, deletedId: user.id }))
         .then((res) => {
             setMyPageInfo(res.data)
         })

@@ -69,6 +69,12 @@ const handleChangeName = (text, setUser, user, authUser) => {
         setUser(res.data.user)
     })
 }
+const deletePostHandler = (post, authUser, user, setMyPageInfo) => {
+    axios.put('api/deletePost', qs.stringify({ postId: post._id, userId: authUser.id, deletedId: user._id }))
+        .then((res) => {
+            setMyPageInfo(res.data)
+        })
+}
 
 const AdminLogic = {
     deleteUser,
@@ -78,7 +84,8 @@ const AdminLogic = {
     openEditPage,
     getUserPosts,
     handleChangeInfo,
-    handleChangeName
+    handleChangeName,
+    deletePostHandler
 }
 
 export default AdminLogic 

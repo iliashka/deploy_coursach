@@ -22,10 +22,10 @@ const getTags = (setTags) => {
         })
 }
 
-const getBestPosts = (setBestPosts) => {
+const getBestPosts = (setPosts) => {
     axios.get('api/bestPosts')
         .then((res) => {
-          setBestPosts(res.data.bestPosts)
+          setPosts(res.data.bestPosts)
         })
 }
 

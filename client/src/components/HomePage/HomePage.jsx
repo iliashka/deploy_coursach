@@ -5,7 +5,6 @@ import { Link } from "react-router-dom";
 import logic from './HomePageLogic'
  
 function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo, tags, setTags }) {
-    const [bestPosts, setBestPosts] = React.useState()
     const [genre, setGenre] = React.useState()
     React.useEffect(() => {
       logic.searchByGenre(genre, setPosts)
@@ -16,7 +15,8 @@ function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo,
         logic.takeAllPosts(setPosts)
         setAuthUser(auth)
         logic.getTags(setTags)
-        logic.getBestPosts(setBestPosts)
+        const theme = localStorage.getItem('theme')
+        document.body.classList.toggle(theme)
     }
     return (
         <div className={s.wrapper}> 
@@ -39,20 +39,20 @@ function HomePage({ user, posts, setPosts, setPost, setAuthUser, setProfileInfo,
                   Фильтровать по жанру
                 </button>
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton1">
-                  <li onClick={() => logic.takeAllPosts(setPosts)} class="dropdown-item">Все</li>
-                  <li onClick={() => setGenre('Эротика')} class="dropdown-item">Эротика</li>
-                  <li onClick={() => setGenre('Фантастика')} class="dropdown-item">Фантастика</li>
-                  <li onClick={() => setGenre('Роман')} class="dropdown-item">Роман</li>
+                  <li onClick={() => logic.takeAllPosts(setPosts)} className="dropdown-item">Все</li>
+                  <li onClick={() => setGenre('Эротика')} className="dropdown-item">Эротика</li>
+                  <li onClick={() => setGenre('Фантастика')} className="dropdown-item">Фантастика</li>
+                  <li onClick={() => setGenre('Роман')} className="dropdown-item">Роман</li>
                 </ul>
               </div>
               <div className='dropdown'>
                 <button className="btn btn-bd-light dropdown-toggle" type="button" id="dropdownMenuButton2" data-bs-toggle="dropdown" aria-expanded="false">
-                  Фильтровать по жанру
+                  Другие фильтры
                 </button>
                 <ul className="dropdown-menu" aria-labelledby="dropdownMenuButton2">
-                  <li><a class="dropdown-item" href="#">Action</a></li>
-                  <li><a class="dropdown-item" href="#">Another action</a></li>
-                  <li><a class="dropdown-item" href="#">Something else here</a></li>
+                  <li onClick={() => logic.getBestPosts(setPosts)} className="dropdown-item" >Топ 3 по рейтингу</li>
+                  <li></li>
+                  <li></li>
                 </ul>
               </div>
             </div>
