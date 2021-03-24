@@ -22,7 +22,7 @@ function LoginPage({authUser, setAuthUser, setTags}) {
     const onFailure = response => console.error(response);
 
     return (
-        <div style={{marginTop: '4em'}} className="col-md-6 offset-md-3">
+        <div style={{marginTop: '4em', marginBottom: '30%'}} className="col-md-6 offset-md-3">
           <h1>Логин</h1>
           <br/>
           <form >
@@ -71,9 +71,6 @@ function LoginPage({authUser, setAuthUser, setTags}) {
               onSuccess={onSuccess}
               onFailure={onFailure}
             />
-          </div>
-          <div className='mt-4'>
-            <Link to='/Privacy'>Политика конфиденциальности</Link>
           </div>
         </div>
     )

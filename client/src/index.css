@@ -119,6 +119,34 @@ body .adminButton {
   }
 }
 
+@media only screen and (max-width: 380px) {
+  .header .navbar {
+    width: 100vw;
+  }
+  .header .navbar .form-inline button {
+    width: 80px !important;
+  }
+  body .card-header{
+    padding: 5px 2px;
+  }
+  body .card-header h3 {
+    font-size: 14px !important;
+  }
+  body .card-body {
+    padding: 2px 2px !important;
+  }
+  body .HomePage_header__1dvLj{
+    flex-direction: column !important;
+    align-items: center;
+  }
+  body .header .navbar .firstBlock{
+    padding-right: 18px ;
+  }
+  body .col-md-6 .offset-md-3{
+    padding-bottom: 100px;
+  }
+}
+
 @media only screen and (max-width: 320px) {
   .header .navbar {
     width: 100vw;
