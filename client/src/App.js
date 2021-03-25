@@ -27,6 +27,7 @@ function App() {
     avatar: '',
     aboutMe: ''
   })
+  
   const [users, setUsers] = React.useState()
   const [myPageInfo, setMyPageInfo] = React.useState()
   const [post, setPost] = React.useState()
@@ -36,17 +37,20 @@ function App() {
   const [profileInfo, setProfileInfo] = React.useState()
   const [editedUser, setEditedUser] = React.useState()
   const [value, setValue] = React.useState()
+  const [lang, setLang] = React.useState()
   return (
     <div className="App" style={{height: '100%'}}>
-      <Header setUsers={setUsers} setPost={setPost} setMyPageInfo={setMyPageInfo} setUser={setAuthUser} user={authUser} />
+      <Header setUsers={setUsers} setPost={setPost} setMyPageInfo={setMyPageInfo} setUser={setAuthUser} user={authUser} lang={lang} setLang={setLang} />
       <Route path='/NewPostPage' render={() => <NewPostPage 
                                                   setTags={setTags} 
                                                   tags={tags} 
-                                                  user={authUser} />} />
+                                                  user={authUser}
+                                                  lang={lang} />} />
       <Route path='/NewAdminPostPage' render={() => <NewAdminPostPage
                                                       user={editedUser}
                                                       tags={tags}
                                                       setTags={setTags}
+                                                      lang={lang}
                                                     />} />
       <Route path='/HomePage' render={() =>    <HomePage 
                                                   setProfileInfo={setProfileInfo} 
@@ -56,13 +60,16 @@ function App() {
                                                   posts={posts} 
                                                   setPosts={setPosts} 
                                                   setPost={setPost} 
-                                                  setAuthUser={setAuthUser} />} />
+                                                  setAuthUser={setAuthUser}
+                                                  lang={lang}
+                                                  setLang={setLang} />} />
       <Route path='/LoginPage' render={() =>   <LoginPage 
                                                   setTags={setTags} 
                                                   authUser={authUser} 
-                                                  setAuthUser={setAuthUser} />} />
-      <Route path='/RegisterPage' render={() => <RegisterPage />} />
-      <Route path='/ProfilePage' render={() =>  <ProfilePage profileInfo={profileInfo} />} />
+                                                  setAuthUser={setAuthUser}
+                                                  lang={lang} />} />
+      <Route path='/RegisterPage' render={() => <RegisterPage lang={lang} />} />
+      <Route path='/ProfilePage' render={() =>  <ProfilePage profileInfo={profileInfo} lang={lang} />} />
       <Route path='/MyPage' render={() =>       <MyPage 
                                                   setEditPost={setEditPost} 
                                                   setPost={setPost} 
@@ -70,7 +77,8 @@ function App() {
                                                   user={authUser} 
                                                   setValue={setValue}
                                                   setMyPageInfo={setMyPageInfo} 
-                                                  myPageInfo={myPageInfo} />} />
+                                                  myPageInfo={myPageInfo}
+                                                  lang={lang} />} />
       <Route path='/AdminMyPage' render={() =>  <AdminMyPage
                                                   setEditPost={setEditPost} 
                                                   setPost={setPost} 
@@ -80,17 +88,20 @@ function App() {
                                                   authUser={authUser}
                                                   setMyPageInfo={setMyPageInfo} 
                                                   myPageInfo={myPageInfo}
+                                                  lang={lang}
                                                   />}/>
       <Route path='/PostPage' render={() =>     <PostPage 
                                                   user={authUser} 
                                                   setPosts={setPosts} 
-                                                  post={post} />} />
+                                                  post={post}
+                                                  lang={lang} />} />
       <Route path='/EditPage' render={() =>     <EditPost 
                                                   user={authUser} 
                                                   setEditPost={setEditPost} 
                                                   editPost={editPost}
                                                   setValue={setValue}
-                                                  value={value} />} />
+                                                  value={value}
+                                                  lang={lang} />} />
       <Route path='/AdminPage' render={() =>    <AdminPage 
                                                   setMyPageInfo={setMyPageInfo} 
                                                   setEditPost={setEditPost} 
@@ -98,10 +109,11 @@ function App() {
                                                   setUsers={setUsers} 
                                                   setValue={setValue}
                                                   authUser={authUser} 
-                                                  users={users} />} />
+                                                  users={users}
+                                                  lang={lang} />} />
       <Route path='/Privacy' render={() =>      <Privacy/>}/>
       <Route path='/Error' render={() =>        <ErrorPage/>}/>
-      <Footer/>
+      <Footer lang={lang}/>
     </div>
   );
 }

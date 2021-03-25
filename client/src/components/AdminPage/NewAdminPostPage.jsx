@@ -5,7 +5,7 @@ import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 import NewPostLogic from '../NewPostPage/NewPostLogic'
 
-function NewAdminPostPage({ user, tags, setTags }) {
+function NewAdminPostPage({ user, tags, setTags, lang }) {
     const [preTags, setPreTags] = React.useState()
     const [value, setValue] = React.useState("")
     const [selectedTab, setSelectedTab] = React.useState("write");
@@ -20,9 +20,9 @@ function NewAdminPostPage({ user, tags, setTags }) {
     return (
         <div className="card border-secondary mb-3 newPostCard" style={{ maxWidth: '60%', margin: 'auto', marginTop: '5rem' }}>
             <div style={{ display: 'flex', justifyContent: 'space-between' }} className="card-header">
-                <h3 className='card-text'>Автор: {user.login}</h3>
+                <h3 className='card-text'>{lang===false?`Author: `:`Автор: `} {user.login}</h3>
                 <div style={{ display: 'flex' }} >
-                    <h3 style={{ marginRight: '1rem' }}>Жанр:</h3>
+                    <h3 style={{ marginRight: '1rem' }}>{lang===false?`Genre: `:`Жанр:`}</h3>
                     <select onChange={(e) => setNewPost(newPost => ({ ...newPost, genre: e.target.value }))} className='form-select'>
                         <option value="Эротика">Эротика</option>
                         <option value="Фантастика">Фантастика</option>
@@ -32,15 +32,15 @@ function NewAdminPostPage({ user, tags, setTags }) {
             </div>
             <div className="card-body text-dark">
                 <div>
-                    <label><h5 className='card-text'>Название произведения:</h5></label>
+                    <label><h5 className='card-text'>{lang===false?`Post name: `:`Название произведения:`}</h5></label>
                     <input onChange={(e) => setNewPost(newPost => ({ ...newPost, postName: e.target.value }))} className="form-control" type="text" />
                 </div><br />
                 <div>
-                    <label><h5 className='card-text'>Краткое описане:</h5></label>
+                    <label><h5 className='card-text'>{lang===false?`Summary:`:`Краткое описание:`}</h5></label>
                     <input onChange={(e) => setNewPost(newPost => ({ ...newPost, summary: e.target.value }))} className="form-control" type="text" />
                 </div><br />
                 <div className="form-group green-border-focus">
-                    <label><h5 className='card-text'>Ваше Произведение:</h5></label>
+                    <label><h5 className='card-text'>{lang===false?`Your post:`:`Ваше Произведение:`}</h5></label>
                     <ReactMde
                         value={value}
                         onChange={setValue}
@@ -57,8 +57,8 @@ function NewAdminPostPage({ user, tags, setTags }) {
                     />
                 </div>
                 <div className="form-group green-border-focus">
-                    <label><h5 className='card-text'>Тэги:</h5></label>
-                    <Tags setPreTags={setPreTags} setTags={setTags} tags={tags} />
+                    <label><h5 className='card-text'>{lang===false?`Tags:`:`Тэги:`}</h5></label>
+                    <Tags setPreTags={setPreTags} setTags={setTags} tags={tags} lang={lang} />
 
                 </div>
             </div>
@@ -70,10 +70,10 @@ function NewAdminPostPage({ user, tags, setTags }) {
                         <h5 class="modal-title" id="exampleModalLabel">{user && user.login}</h5>
                     </div>
                     <div class="modal-body">
-                        <h6>Твоя "Прелесть" ждёт тебя на главной странице!</h6>
+                        <h6>{lang===false?`Your "Lovely" is waiting for you on the main page!`:`Твоя "Прелесть" ждёт тебя на главной странице!`}</h6>
                     </div>
                     <div class="modal-footer">
-                    <button onClick={() => document.location.href = '/HomePage'} type="button" data-bs-dismiss="modal" class="btn btn-primary">Вернуться в Мордор</button>
+                    <button onClick={() => document.location.href = '/HomePage'} type="button" data-bs-dismiss="modal" class="btn btn-primary">{lang===false?`Return to Mordor`:`Вернуться в Мордор`}</button>
                     </div>
                     </div>
                 </div>

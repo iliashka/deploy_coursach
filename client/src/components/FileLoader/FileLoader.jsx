@@ -4,7 +4,7 @@ import React from 'react'
 import { FileDrop } from 'react-file-drop'
 import './FileLoader.css'
 
-function FileLoader({user, setUser}) {
+function FileLoader({user, setUser, lang}) {
     
     const [previewSource, setPreviewSource] = React.useState()
 
@@ -33,7 +33,7 @@ function FileLoader({user, setUser}) {
     }
     return (
         <div>
-            <h6 style={{width: '100px', textAlign: 'center'}}>Загрузить аватарку</h6>
+            <h6 style={{width: '100px', textAlign: 'center'}}>{lang===false?`Upload avatar`:`Загрузить аватарку`}</h6>
             <form  onSubmit={handleUploadFile} >
                 <div style={{height: '100px', width: '100px', border: '0.1px solid grey', borderRadius: '100px', marginBottom: '10px'}}>
                     <FileDrop
@@ -42,7 +42,7 @@ function FileLoader({user, setUser}) {
                         <h1 style={{margin: 'auto'}}>+</h1>
                     </FileDrop>
                 </div>
-                <button className="btn btn-primary" type='submit' >Загрузить</button>
+                <button className="btn btn-primary" type='submit' >{lang===false?`Upload`:`Загрузить`}</button>
             </form>
             {previewSource && (
                 <img src={previewSource} alt='chosen' style={{height: '150px'}}/>

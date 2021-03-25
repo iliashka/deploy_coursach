@@ -7,13 +7,13 @@ import ProfileLogic from '../ProfilePage/ProfileLogic'
 import PostsLogic from '../HomePage/Posts/PostsLogic'
 import EditableLabel from 'react-inline-editing'
 
-function AdminMyPage({ user, authUser, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost, setValue }) {
+function AdminMyPage({ user, authUser, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost, setValue, lang }) {
 
     return (
         <div className='col-md-auto'>
             <div className='profile_wrapper' style={{ paddingTop: '30px', paddingBottom: '70px', maxWidth: '60%', margin: 'auto', display: 'flex', justifyContent: 'space-between' }}>{myPageInfo &&
                 <div>
-                    <h2>Страница пользователя: 
+                    <h2>{lang===false?'User page: ':'Страница пользователя: '} 
                     <EditableLabel
                     text={user.login}
                     labelClassName='myLabelClass'
@@ -26,7 +26,7 @@ function AdminMyPage({ user, authUser, myPageInfo, setEditPost, setMyPageInfo, s
                     onFocusOut={(text) => AdminLogic.handleChangeName(text, setUser, user, authUser)}
                     />
                 </h2>
-                <h5>Обо мне: 
+                <h5>{lang===false?'About me: ':'Обо мне: '}
                     <EditableLabel
                     text={user.aboutMe}
                     labelClassName='myLabelClass'
@@ -43,7 +43,7 @@ function AdminMyPage({ user, authUser, myPageInfo, setEditPost, setMyPageInfo, s
                 </h5>
                 </div>
             }
-                {user && !user.avatar?<FileLoader setUser={setUser} user={user} />:<img alt='avatar' style={{width: '100px', height: '100px'}} src={user && user.avatar}/>}
+                {user && !user.avatar?<FileLoader lang={lang} setUser={setUser} user={user} />:<img alt='avatar' style={{width: '100px', height: '100px'}} src={user && user.avatar}/>}
             </div>
             <div style={{ paddingBottom: '70px', maxWidth: '60%', margin: 'auto' }} className='form-select'>
                 <select onChange={(e) => ProfileLogic.searchByGenre(e, user, setMyPageInfo)}>
@@ -57,10 +57,10 @@ function AdminMyPage({ user, authUser, myPageInfo, setEditPost, setMyPageInfo, s
                     <thead>
                         <tr>
                             <th scope="col">№</th>
-                            <th scope="col">Название Произведения</th>
-                            <th scope="col">Жанр Произведения</th>
-                            <th scope='col'>Рейтинг</th>
-                            <th scope="col">Действия</th>
+                            <th scope="col">{lang===false?'Post name':'Название Произведения'}</th>
+                            <th scope="col">{lang===false?'Post genre':'Жанр Произведения'}</th>
+                            <th scope='col'>{lang===false?'Post rating':'Рейтинг'}</th>
+                            <th scope="col">{lang===false?'Actions':'Действия'}</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -79,17 +79,17 @@ function AdminMyPage({ user, authUser, myPageInfo, setEditPost, setMyPageInfo, s
                                 <td>
                                     <div className="dropdown">
                                         <button className="btn btn-secondary dropdown-toggle" type="button" id="dropdownMenu2" data-bs-toggle="dropdown" aria-expanded="false">
-                                            Действия
+                                            {lang===false?'Actions':'Действия'}
                                         </button>
                                         <ul className="dropdown-menu" aria-labelledby="dropdownMenu2">
                                             <li><button onClick = {() => AdminLogic.deletePostHandler(post, authUser, user, setMyPageInfo)} style = {{ marginRight: '10px' }} className = 'btn btn-danger' type = 'button' >
-                                                Удалить
+                                                {lang===false?'Delete':'Удалить'}
                                             </button ></li>
                                             <li><button style={{marginRight: '10px'}} className='btn btn-warning' type='button'>
-                                                <Link onClick={() => AdminLogic.openEditPage(post._id, setEditPost, setValue)} to='/EditPage' style={{color: 'white', textDecoration: 'none'}}>Редактировать</Link>
+                                                <Link onClick={() => AdminLogic.openEditPage(post._id, setEditPost, setValue)} to='/EditPage' style={{color: 'white', textDecoration: 'none'}}>{lang===false?'Edit':'Редактировать'}</Link>
                                             </button></li>
                                             <li><button className='btn btn-primary' type='button'>
-                                                <Link onClick={() => PostsLogic.readPostHandler(post, setPost)} to='/PostPage' style={{color: 'white', textDecoration: 'none'}}>Читать</Link>
+                                                <Link onClick={() => PostsLogic.readPostHandler(post, setPost)} to='/PostPage' style={{color: 'white', textDecoration: 'none'}}>{lang===false?'Read':'Читать'}</Link>
                                             </button></li>
                                         </ul>
                                     </div>

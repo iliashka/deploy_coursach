@@ -1,10 +1,10 @@
 import React from 'react'
 import ProfileInfo from './ProfileInfo'
 
-function ProfilePage({profileInfo}) {
+function ProfilePage({profileInfo, lang}) {
     return (
         <div>
-            <ProfileInfo profileInfo={profileInfo} />
+            <ProfileInfo lang={lang} profileInfo={profileInfo} />
         </div>
     )
 }

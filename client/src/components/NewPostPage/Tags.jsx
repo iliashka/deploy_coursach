@@ -1,7 +1,7 @@
 import React from 'react'
 import CreatableSelect from 'react-select/creatable';
 
-function Tags({tags, setTags, preTags, setPreTags}) {
+function Tags({tags, setTags, preTags, setPreTags, lang}) {
     const [count, setCount] = React.useState(0) 
     var arr = []
     const handleChange = (newValue, actionMeta) => {
@@ -15,7 +15,7 @@ function Tags({tags, setTags, preTags, setPreTags}) {
     return (
         <div>
             <CreatableSelect
-                placeholder='Введите Ваши теги или выберите существующие'
+                placeholder={lang===false?'Enter your tags or select existing ones':'Введите Ваши теги или выберите существующие'}
                 options={tags && tags.map((e) => {
                     return e
                 })}

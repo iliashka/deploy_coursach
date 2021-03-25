@@ -5,27 +5,23 @@ const { roles } = require("../roles");
 const Post = require("../models/postsModel");
 const Like = require("../models/likesModel");
 const Tags = require("../models/tagsModel");
-const elasticsearch = require("elasticsearch")
-const algoliasearch = require('algoliasearch')
+const algoliasearch = require("algoliasearch")
 
-// const esClient = elasticsearch.Client({
-//     host: "http://127.0.0.1:9200",
-// })
-const client = algoliasearch('N815CNHWDN', 'a27316884c56adae6fffbe1090805388');
-const index = client.initIndex("posts2")
+const client = algoliasearch("N815CNHWDN", "a27316884c56adae6fffbe1090805388");
+const index = client.initIndex("posts2");
 
 exports.createIndex = async (req, res, next) => {
     try {
-        const object = req.post
-        console.log(object)
+        const object = req.post;
+        console.log(object);
         index
           .saveObject(object, { autoGenerateObjectIDIfNotExist: true })
           .then(() => {
-              res.status(200).json({msg: "good"})
+              res.status(200).json({msg: "good"});
           }) 
-          .catch((err) => console.log(err))       
+          .catch((err) => console.log(err));      
     } catch (error) {
-        next(error)
+        next(error);
     }
 }
 
@@ -34,11 +30,11 @@ exports.takePosts = async (req, res, next) => {
         const posts = await Post.find({});
         res.status(200).json({
             posts
-        })
+        });
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
 
 exports.newPost = async (req, res, next) => {
     try {
@@ -94,36 +90,35 @@ exports.takeProfileInfo = async (req, res, next) => {
 }
 
 exports.plusLike = async (req, res, next) => {
-    console.log(req.body)
     try {
         const { postId, userId } = req.body;
         const user = await User.findById(userId);
         const isLike = await Like.findOne({postId, userId});
             if (!isLike) {
                 const newLike = new Like({postId: postId, userId: userId});
-                await newLike.save()
-                const likes = await Like.find({postId})
+                await newLike.save();
+                const likes = await Like.find({postId});
                 await Post.findByIdAndUpdate(postId, {likesCount: likes.length}, {new: true});
-                const posts = await Post.find({})
+                const posts = await Post.find({});
                 await res.json({
                     posts,
-                    message: "Вы поставили лайк"
-                })
+                    message: "Вы поставили лайк",
+                });
             } else {
-                await Like.findByIdAndDelete(isLike._id)
-                const likes = await Like.find({postId})
+                await Like.findByIdAndDelete(isLike._id);
+                const likes = await Like.find({postId});
                 await Post.findByIdAndUpdate(postId, {likesCount: likes.length}, {new: true});
-                const posts = await Post.find({})
+                const posts = await Post.find({});
                 await res.json({
                     posts,
-                    message: "Лайк удалён"
-                })
-            };
+                    message: "Лайк удалён",
+                });
+            }
             
     } catch (error) {
-        next(error)
+        next(error);
     }
-}
+};
 
 exports.getPostsByGenre = async (req, res, next) => {
     console.log(req.body)
@@ -142,8 +137,8 @@ exports.getPostsByGenre = async (req, res, next) => {
 
 exports.deletePost = async (req, res, next) => {
     try {
-        const { userId, postId } = req.body;
-        const user = await User.findById(userId);
+        const { deletedId, postId } = req.body;
+        const user = await User.findById(deletedId);
         await Post.findByIdAndDelete(postId);
         const posts = await Post.find({login: user.login})
         await res.json({
@@ -170,8 +165,9 @@ exports.getPost = async (req, res, next) => {
 exports.editPost = async (req, res, next) => {
     console.log(req.body)
     try {
-        const { id, genre, summary, postName, post } = req.body;
-        await Post.findByIdAndUpdate(id, {genre: genre, summary: summary, postName: postName, post: post}, {new: true})
+        const { id, update } = req.body;
+        console.log(update)
+        await Post.findByIdAndUpdate(id, update, {new: true});
         await res.status(200).json({
             message: "Пост Изменён"
         })

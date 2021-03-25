@@ -1,7 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
 
-function Footer() {
+function Footer(lang) {
     return (
             <footer className='footer font-small pt-4'>
                 <div className="container d-flex justify-content-center">
@@ -10,7 +10,7 @@ function Footer() {
                     <button className='btn btn-primary'><a href="https://github.com/iliashka"><i class="bi bi-github"></i></a></button>
                 </div>
                 <div className="footer-copyright text-center py-3">
-                    <Link to='/Privacy'>Политика конфиденциальности</Link>
+                    <Link to='/Privacy'>{lang===false?'Privacy politics':'Политика конфиденциальности'}</Link>
                 </div>
             </footer>
 

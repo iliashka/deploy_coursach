@@ -158,6 +158,7 @@ exports.grantAccess = function(action, resource) {
 exports.allowIfLoggedIn = async (req, res, next) => {
     try {
         const { userId } = req.body
+        console.log(req.body);
         const user = await User.findById(userId)
         if (!user)
             return res.status(401).json({

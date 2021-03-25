@@ -4,7 +4,7 @@ import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 import PostsLogic from './PostsLogic';
 
-function EditPost({ editPost, value, setValue }) {
+function EditPost({ editPost, value, setValue, lang }) {
     const [selectedTab, setSelectedTab] = React.useState("write");
     const [preEditPost, setPreEditPost] = React.useState({
         genre: editPost && editPost.genre,
@@ -19,9 +19,9 @@ function EditPost({ editPost, value, setValue }) {
         <div>
             <div className="card border-secondary mb-3" style={{ maxWidth: '80%', margin: 'auto', marginTop: '3rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }} className="card-header">
-                    <h3 style={{ marginLeft: '1rem' }}>Автор: {editPost && editPost.login}</h3>
+                    <h3 style={{ marginLeft: '1rem' }}>{lang===false?`Author: `:`Автор: `} {editPost && editPost.login}</h3>
                     <div style={{display: 'flex'}}>
-                        <h3 style={{ marginRight: '15px' }}>Жанр:</h3>
+                        <h3 style={{ marginRight: '15px' }}>{lang===false?`Genre: `:`Жанр:`}</h3>
                         <select onChange={(e) => setPreEditPost(preEditPost => ({ ...preEditPost, genre: e.target.value }))} className='form-select'>
                             <option value="Эротика">Эротика</option>
                             <option value="Фантастика">Фантастика</option>
@@ -31,19 +31,19 @@ function EditPost({ editPost, value, setValue }) {
                 </div>
                 <div className="card-body text-dark">
                     <div>
-                        <label><h5 className='card-text'>Название произведения:</h5></label>
+                        <label><h5 className='card-text'>{lang===false?`Post name: `:`Название произведения:`}</h5></label>
                         <input defaultValue={editPost && editPost.postName} 
                                onChange={(e) => setPreEditPost(preEditPost => ({ ...preEditPost, postName: e.target.value }))} 
                                className="form-control" type="text" />
                     </div><br />
                     <div>
-                        <label><h5 className='card-text'>Краткое описане:</h5></label>
+                        <label><h5 className='card-text'>{lang===false?`Summary:`:`Краткое описание:`}</h5></label>
                         <input defaultValue={editPost && editPost.summary}
                                onChange={(e) => setPreEditPost(preEditPost => ({ ...preEditPost, summary: e.target.value }))} 
                                className="form-control" type="text" />
                     </div><br />
                     <div className="form-group green-border-focus">
-                        <label><h5 className='card-text'>Ваше Произведение:</h5></label>
+                        <label><h5 className='card-text'>{lang===false?`Your post:`:`Ваше Произведение:`}</h5></label>
                                   <ReactMde
                                     value={value}
                                     onChange={setValue}
@@ -60,7 +60,7 @@ function EditPost({ editPost, value, setValue }) {
                                   />
                     </div>
                 </div>
-                <button onClick={() => PostsLogic.editPostHandler(value, preEditPost, editPost)} className='btn btn-primary'><h5 style={{marginBottom: '0'}}>Внести Изменения</h5></button>
+                <button onClick={() => PostsLogic.editPostHandler(value, preEditPost, editPost)} className='btn btn-primary'><h5 style={{marginBottom: '0'}}>{lang===false?`Update post`:`Внести Изменения`}</h5></button>
             </div>
         </div>
     )
