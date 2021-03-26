@@ -13,6 +13,10 @@ const newPostHandler = (preTags, value, newPost, user) => {
         .then((res) => {
             console.log(res.data.data);
         })
+        .catch(err => {
+            console.log(err)
+            document.location.href = '/Error'
+          })
 }
 
 const NewPostLogic = {

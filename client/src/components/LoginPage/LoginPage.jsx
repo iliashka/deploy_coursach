@@ -4,7 +4,6 @@ import s from '../Header/Header.module.css';
 import FaceBookAuth from 'react-facebook-auth'
 import VkAuth from "react-vk-auth";
 import LoginLogic from './LoginLogic'
-import LoginGithub from 'react-login-github';
 
 function LoginPage({authUser, setAuthUser, setTags, lang}) {
     const [preUser, setPreUser] = React.useState({
@@ -14,13 +13,10 @@ function LoginPage({authUser, setAuthUser, setTags, lang}) {
 
     const MyFacebookButton = ({ onClick }) => (
       <button type='button' className='btn btn-primary fb' onClick={onClick}>
-        <i class="bi bi-facebook"></i>
+        Sing In with<i class="bi bi-facebook"></i>
       </button>
     );
     
-    const onSuccess = response => console.log(response);
-    const onFailure = response => console.error(response);
-
     return (
         <div style={{marginTop: '4em', marginBottom: '30%'}} className="col-md-6 offset-md-3">
           <h1>{lang===false?`Login`:`Логин`}</h1>
@@ -64,13 +60,7 @@ function LoginPage({authUser, setAuthUser, setTags, lang}) {
             className='btn btn-primary fb ml-2'
             apiId='7795032'
             callback={(data) => LoginLogic.handleVkResponse(data, setTags, setAuthUser)}
-            >VK</VkAuth>
-            <LoginGithub 
-              className='btn btn-dark ml-2'
-              clientId="Iv1.3b101205eaa5da98"
-              onSuccess={onSuccess}
-              onFailure={onFailure}
-            />
+            >Sing In with VK</VkAuth>
           </div>
         </div>
     )

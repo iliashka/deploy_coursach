@@ -4,7 +4,7 @@ import AdminLogic from './AdminPageLogic'
 import HeaderLogic from '../Header/HeaderLogic'
 
 
-function AdminPage({users, authUser, setUsers, setEditPost, setMyPageInfo, setEditedUser, setValue, lang}) {
+const AdminPage = ({users, authUser, setUsers, setEditPost, setMyPageInfo, setEditedUser, setValue, lang}) => {
     const [userPosts, setUserPosts] = React.useState()
 
 

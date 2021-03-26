@@ -7,7 +7,7 @@ import ProfileLogic from '../ProfilePage/ProfileLogic'
 import PostsLogic from '../HomePage/Posts/PostsLogic'
 import EditableLabel from 'react-inline-editing'
 
-function AdminMyPage({ user, authUser, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost, setValue, lang }) {
+const AdminMyPage = ({ user, authUser, myPageInfo, setEditPost, setMyPageInfo, setUser, setPost, setValue, lang }) => {
 
     return (
         <div className='col-md-auto'>

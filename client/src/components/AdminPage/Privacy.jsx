@@ -1,6 +1,6 @@
 import React from 'react'
 
-function Privacy() {
+const Privacy = () => {
     return (
         <div>
             1. ОПРЕДЕЛЕНИЕ ТЕРМИНОВ

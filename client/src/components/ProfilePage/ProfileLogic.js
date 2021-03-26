@@ -6,6 +6,10 @@ const searchByGenre = (e, user, setMyPageInfo) => {
         .then((res) => {
             setMyPageInfo(res.data)
         })
+        .catch(err => {
+            console.log(err)
+            document.location.href = '/Error'
+          })
 }
 
 const deletePostHandler = (post, user, setMyPageInfo) => {
@@ -13,6 +17,10 @@ const deletePostHandler = (post, user, setMyPageInfo) => {
         .then((res) => {
             setMyPageInfo(res.data)
         })
+        .catch(err => {
+            console.log(err)
+            document.location.href = '/Error'
+          })
 }
 
 const handleChangeInfo = (text, setUser, user) => {
@@ -23,6 +31,10 @@ const handleChangeInfo = (text, setUser, user) => {
         localStorage.removeItem("user")
         localStorage.setItem("user", JSON.stringify(res.data.user))
     })
+    .catch(err => {
+        console.log(err)
+        document.location.href = '/Error'
+      })
 } 
 const handleChangeName = (text, setUser, user) => {
     console.log('Left editor with text: ' + text);
@@ -32,6 +44,10 @@ const handleChangeName = (text, setUser, user) => {
         localStorage.removeItem("user")
         localStorage.setItem("user", JSON.stringify(res.data.user))
     })
+    .catch(err => {
+        console.log(err)
+        document.location.href = '/Error'
+      })
 }
 
 const ProfileLogic = {

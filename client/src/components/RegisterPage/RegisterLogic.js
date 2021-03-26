@@ -11,7 +11,7 @@ const registerHandler = (e, user, setUser) => {
             window.location.href = '/LoginPage'
           }
       }, (error) => {
-          console.log(error)
+          alert(error)
       })
   }
 

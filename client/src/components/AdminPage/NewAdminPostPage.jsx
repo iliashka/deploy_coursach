@@ -5,7 +5,7 @@ import ReactMde from "react-mde";
 import "react-mde/lib/styles/css/react-mde-all.css";
 import NewPostLogic from '../NewPostPage/NewPostLogic'
 
-function NewAdminPostPage({ user, tags, setTags, lang }) {
+const NewAdminPostPage = ({ user, tags, setTags, lang }) => {
     const [preTags, setPreTags] = React.useState()
     const [value, setValue] = React.useState("")
     const [selectedTab, setSelectedTab] = React.useState("write");

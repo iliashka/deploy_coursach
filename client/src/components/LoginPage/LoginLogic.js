@@ -9,7 +9,7 @@ const loginHandler = (e, preUser, setAuthUser, setTags) => {
         setAuthUser(res.data.data)
         setTags(res.data.tags.map((e) => e.tagBody))
       }, (error) => {
-        console.log(error)
+        alert(error)
       })
   }
 
@@ -28,6 +28,10 @@ const handleVkResponse = (data, setAuthUser, setTags) => {
         setTags(res.data.tags.map((e) => e.tagBody))
         document.location.href = '/HomePage'
       })
+      .catch(err => {
+        console.log(err)
+        document.location.href = '/Error'
+      })
     }
 }  
 
@@ -45,6 +49,10 @@ const authenticate = (response, setAuthUser, setTags) => {
         setAuthUser(res.data.user)
         setTags(res.data.tags.map((e) => e.tagBody))
         document.location.href = '/HomePage'
+      })
+      .catch(err => {
+        console.log(err)
+        document.location.href = '/Error'
       })
     }else{
       return;

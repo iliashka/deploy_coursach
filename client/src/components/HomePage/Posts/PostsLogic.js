@@ -16,6 +16,10 @@ const likeHandlerPlus = ( post, user, setPosts) => {
             .then((res) => {
                 setPosts(res.data.posts);
             })
+            .catch(err => {
+                console.log(err)
+                document.location.href = '/Error'
+              })
     }
 }
 
@@ -28,6 +32,10 @@ const ratingChange = (post, newRating, user, setPosts) => {
                 alert(res.data.message)
                 setPosts(res.data.posts)
             })
+            .catch(err => {
+                console.log(err)
+                document.location.href = '/Error'
+              })
     }
 }
 
@@ -36,6 +44,10 @@ const readPostHandler = (post, setPost) => {
         .then((res) => {
             setPost(res.data.post)
         })
+        .catch(err => {
+            console.log(err)
+            document.location.href = '/Error'
+          })
 }
 
 const sendCommentHandler = (post, user, setPosts, commentBody) => {
@@ -45,7 +57,11 @@ const sendCommentHandler = (post, user, setPosts, commentBody) => {
         axios.put('api/addComment', qs.stringify({postId: post._id, userLogin: user.login, comment: commentBody}))
         .then((res) => {
         setPosts(res.data.posts)
-    })
+        })
+        .catch(err => {
+            console.log(err)
+            document.location.href = '/Error'
+          })
     }
 }
 
@@ -58,6 +74,10 @@ const editPostHandler = (value, preEditPost, editPost) => {
     .then((res)=> {
         alert(res.data.message)
     })
+    .catch(err => {
+        console.log(err)
+        document.location.href = '/Error'
+      })
 }
 
 

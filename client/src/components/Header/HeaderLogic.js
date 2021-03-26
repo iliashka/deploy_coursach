@@ -6,6 +6,10 @@ const myPageHandler = (user, setMyPageInfo) => {
     .then((res) => {
       setMyPageInfo(res.data.data)
     })
+    .catch(err => {
+        console.log(err)
+        document.location.href = '/Error'
+      })
 }
 
 const takeUsersHandler = (user, setUsers) => {
@@ -13,6 +17,10 @@ const takeUsersHandler = (user, setUsers) => {
     .then((res) => {
       setUsers(res.data.users)
     })
+    .catch(err => {
+        console.log(err)
+        document.location.href = '/Error'
+      })
 }
 
 const readPostHandler = (id, setPost, setPostsList) => {
@@ -21,6 +29,10 @@ const readPostHandler = (id, setPost, setPostsList) => {
         setPost(res.data.post)
         setPostsList([])
     })
+    .catch(err => {
+        console.log(err)
+        document.location.href = '/Error'
+      })
 }
 
 const postData = (input, setPostsList) => {
@@ -28,6 +40,10 @@ const postData = (input, setPostsList) => {
     .then((res) => {
         setPostsList(res.data);
     })
+    .catch(err => {
+        console.log(err)
+        document.location.href = '/Error'
+      })
 }
 
 const HeaderLogic = {

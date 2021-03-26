@@ -7,6 +7,10 @@ body {
   -moz-osx-font-smoothing: grayscale;
 }
 
+body .header .navbar .local .btn {
+  width: 20px !important;
+}
+
 body .card:last-child {
   margin-bottom: 20% !important;
   position: relative;
