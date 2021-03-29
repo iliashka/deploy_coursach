@@ -19,7 +19,7 @@ function PostPage({ user, post, setPosts, lang }) {
                     <h6 className='card-text'>{post && post.summary}</h6>
                     <ReactMarkdown className='card-text' source={post && post.post} />
                 </div>
-                <div className='border export' style={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                <div className='border' style={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                         <div style={{display: 'flex', alignItems: 'center'}}>
                             <h5 style={{marginBottom: '0px', marginRight: '15px'}}>{lang===false?`Rate post`:`Оценить произведение`}</h5>
                             <ReactStars
@@ -32,7 +32,7 @@ function PostPage({ user, post, setPosts, lang }) {
                         <i onClick={() => PostsLogic.likeHandlerPlus(post, user, setPosts)} style={{marginLeft:'rem', paddingRight: '15px', cursor: 'pointer' }} className="bi bi-hand-thumbs-up">Поставить лайк</i>
                     </div>
             </div>
-            <div style={{width: '80%'}} className='d-flex m-auto justify-content-end'>
+            <div style={{width: '80%'}} className='d-flex m-auto justify-content-end export'>
                 <Pdf targetRef={refPdf} filename="chudo.pdf">
                     {({ toPdf }) => <button className='btn btn-primary mt-4' onClick={toPdf}>{lang===false?`Export in PDF`:`Экспорт в PDF`}</button>}
                 </Pdf>
