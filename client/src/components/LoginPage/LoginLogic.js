@@ -50,6 +50,7 @@ const authenticate = (response, setAuthUser, setTags) => {
         password: response.id + response.name
       }))
       .then((res) => {
+        localStorage.setItem("user", JSON.stringify(res.data.user))
         setAuthUser(res.data.user)
         setTags(res.data.tags.map((e) => e.tagBody))
         document.location.href = '/HomePage'
