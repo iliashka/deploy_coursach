@@ -5,9 +5,13 @@ const loginHandler = (e, preUser, setAuthUser, setTags) => {
     e.preventDefault()
     axios.post('api/login', qs.stringify(preUser))
       .then((res) => { 
-        localStorage.setItem("user", JSON.stringify(res.data.data))
-        setAuthUser(res.data.data)
-        setTags(res.data.tags.map((e) => e.tagBody))
+        if(res.data.data.status === 'blocked'){
+          alert('Вы Заблокированы')
+        }else{
+          localStorage.setItem("user", JSON.stringify(res.data.data))
+          setAuthUser(res.data.data)
+          setTags(res.data.tags.map((e) => e.tagBody))
+        }
       }, (error) => {
         alert(error)
       })
@@ -23,10 +27,10 @@ const handleVkResponse = (data, setAuthUser, setTags) => {
         password: data.session.user.href
       }))
       .then((res) => {
-        localStorage.setItem("user", JSON.stringify(res.data.user))
-        setAuthUser(res.data.user)
-        setTags(res.data.tags.map((e) => e.tagBody))
-        document.location.href = '/HomePage'
+          localStorage.setItem("user", JSON.stringify(res.data.user))
+          setAuthUser(res.data.user)
+          setTags(res.data.tags.map((e) => e.tagBody))
+          document.location.href = '/HomePage'
       })
       .catch(err => {
         console.log(err)
@@ -43,7 +47,7 @@ const authenticate = (response, setAuthUser, setTags) => {
         role: 'user',
         login: response.name,
         avatar: response.picture.data.url,
-        password: response.accessToken
+        password: response.id + response.name
       }))
       .then((res) => {
         setAuthUser(res.data.user)

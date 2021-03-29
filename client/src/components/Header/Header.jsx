@@ -25,14 +25,12 @@ function Header({ setMyPageInfo, user, setUser, setPost, setUsers, setLang, lang
     const changeRu = () => {
       localStorage.removeItem('lang')
       localStorage.setItem("lang", 'ru')
-      // console.log(language)
       setLang(prev => prev = true)
     }
 
     const changeEn = () => {
       localStorage.removeItem('lang')
       localStorage.setItem("lang", 'en')
-      // console.log(language)
       setLang(prev => prev = false)
     }
 
@@ -41,7 +39,7 @@ function Header({ setMyPageInfo, user, setUser, setPost, setUsers, setLang, lang
           <nav className="navbar navbar-light bg-light">
             <Link className={s.logo} onClick={() => document.location.href = 'HomePage'}></Link>
             <div className='local'>
-                <button onClick={changeRu} className='btn btn-sm' type='button'>RU</button>
+                <button onClick={changeRu} className='btn btn-sm mr-2' type='button'>RU</button>
                 <button onClick={changeEn} className='btn btn-sm' type='button'>EN</button>
               </div>
             <div className='firstBlock'>

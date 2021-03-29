@@ -73,7 +73,7 @@ exports.login = async (req, res, next) => {
         const tags = await Tags.find({})
         await console.log(tags)
         res.status(200).json({
-            data: { email: user.email, role: user.role, login: user.login, id: user._id, avatar: user.avatar, aboutMe: user.aboutMe },
+            data: { email: user.email, role: user.role, login: user.login, id: user._id, avatar: user.avatar, aboutMe: user.aboutMe, status: user.status },
             accessToken,
             tags,
             message: "Вы вошли в систему"
@@ -114,7 +114,6 @@ exports.updateUser = async (req, res, next) => {
       const user = await User.findByIdAndUpdate(updateId, update, {new: true});
       await user.save();
       const users = await User.find({});
-      console.log(user);
       res.status(200).json({
           users,
           user: { email: user.email, role: user.role, login: user.login, id: user._id, avatar: user.avatar, aboutMe: user.aboutMe },

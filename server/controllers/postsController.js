@@ -68,7 +68,6 @@ exports.search = async (req, res, next) => {
         const arr = hits.map((e, i) => {
             return e
         }) 
-        console.log(arr)
         res.status(200).json(arr)
     })}
     } catch (error) {
@@ -125,7 +124,9 @@ exports.getPostsByGenre = async (req, res, next) => {
     try {
         const { id, genre } = req.body;
         const user = await User.findById(id);
+        console.log(user)
         const posts = await Post.find({login: user.login, genre: genre})
+        console.log(posts)
         await res.json({
             user,
             posts

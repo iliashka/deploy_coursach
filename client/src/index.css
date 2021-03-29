@@ -8,7 +8,8 @@ body {
 }
 
 body .header .navbar .local .btn {
-  width: 20px !important;
+  width: 25px !important;
+  padding: 4px 2px;
 }
 
 body .card:last-child {
@@ -19,6 +20,10 @@ body .card:last-child {
 body.dark {
   background: #343a40;
   color: #fff
+}
+
+body.dark .searchList{
+  background-color: rgba(51, 59, 66, 0.671) !important; 
 }
 
 body.dark .card {
