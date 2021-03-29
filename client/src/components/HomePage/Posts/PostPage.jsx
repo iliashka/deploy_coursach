@@ -9,7 +9,7 @@ function PostPage({ user, post, setPosts, lang }) {
     return (
         <div>
             
-            <div ref={refPdf} className="card border-secondary" style={{ maxWidth: '80%', margin: 'auto', marginTop: '3rem', marginBottom: '20%' }}>
+            <div ref={refPdf} className="card border-secondary" style={{ maxWidth: '80%', margin: 'auto', marginTop: '3rem' }}>
                 <div style={{ display: 'flex', justifyContent: 'space-between' }} className="card-header">
                     <h3 style={{ marginLeft: '1rem' }}>{lang===false?`Author: `:`Автор: `} {post && post.login}</h3>
                     <h3 style={{ marginRight: '1rem' }}>{lang===false?`Genre: `:`Жанр:`} {post && post.genre}</h3>
