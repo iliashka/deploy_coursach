@@ -12,6 +12,10 @@ body .header .navbar .local .btn {
   padding: 4px 2px;
 }
 
+body .export {
+  margin-bottom: 20%;
+}
+
 body .card:last-child {
   margin-bottom: 20% !important;
   position: relative;

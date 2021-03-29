@@ -19,7 +19,7 @@ function PostPage({ user, post, setPosts, lang }) {
                     <h6 className='card-text'>{post && post.summary}</h6>
                     <ReactMarkdown className='card-text' source={post && post.post} />
                 </div>
-                <div className='border' style={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
+                <div className='border export' style={{width: '100%', display: 'flex', justifyContent: 'space-between', alignItems: 'center'}}>
                         <div style={{display: 'flex', alignItems: 'center'}}>
                             <h5 style={{marginBottom: '0px', marginRight: '15px'}}>{lang===false?`Rate post`:`Оценить произведение`}</h5>
                             <ReactStars
